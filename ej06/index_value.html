@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ejerciciosApp">
+    <head>
+        <title>Ejercicios AngularJS</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    </head>
+    <body>
+
+        <header>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">AngularJS</a>
+                </div>
+            </nav>
+        </header>
+
+        <section class="container-fluid" ng-controller="ej06Controller">
+           
+            <h3>Ejercicio 06: uso del servicio value</h3>
+
+            <!-- Campo de texto para introducir nombre del cliente -->
+            <div>
+                <label>Escriba el criterio de búsqueda aquí: </label>
+
+                <input type="text" data-ng-model="filterText"/> 
+
+                <!-- NOTA: Si queremos que el filtrado de búsqueda se aplique solo al campo nombre de los objetos de abajo, usar esto -->
+                <!--<input type="text" data-ng-model="filterText.name"/>-->
+                <br/>
+                <br/>
+            </div>
+
+
+            <div>
+                
+                <p>Datos del año fiscal</p>
+                <ul>
+                    <li><strong>Año: </strong> {{configuration.year}}</li>
+                    <li><strong>Trimestre: </strong> {{configuration.quarter}}</li>
+                </ul>
+
+                <p>El listado de clientes es</p>
+
+                <!-- Listado de clientes incluyendo nombre y ciudad, filtrando por el nombre introducido arriba, ordenados por fecha de alta descendente, con la ciudad en     
+                mayúsculas y cantidad de factura redondeada a 2 decimales -->
+                <ul>
+                    <li data-ng-repeat="cust in customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
+                </ul>
+
+
+                <!-- NOTA: Si cambiamos elementos del array, ng-repeat elimina todos los elementos del DOM y los
+                    vuelve a crear. Para evitar eso, podemos usar track by, al que le especificaremos una clave primaria.
+                    Esto asocia cada elemento repetido del DOM con un objeto Javascript, de manera que, salvo que los
+                    modifiquemos, angular no los tocará.
+
+                    En nuestro ejemplo:
+
+                    <li data-ng-repeat="cust in customers track by cust.id">...</li>
+                -->
+            </div>
+
+        </section>
+
+        <footer class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container-fluid">
+                <p class="text-muted">Curso AngularJS</p>
+            </div>
+        </footer>
+
+        <script src="js/vendor/jquery-1.12.1.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.js"></script>
+        <script src="js/vendor/angular-route.js"></script>
+        <script src="js/ej06_value.js"></script>
+    </body>
+</html>
