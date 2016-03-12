@@ -1,0 +1,39 @@
+<h3>Ejercicio 03: bucle con ngRepeat y filtros</h3>
+
+<!-- Campo de texto para introducir nombre del cliente -->
+<div>
+   <label>Escriba el criterio de búsqueda aquí: </label>
+    
+    <input type="text" data-ng-model="filterText"/> 
+    
+    <!-- NOTA: Si queremos que el filtrado de búsqueda se aplique solo al campo nombre de los objetos de abajo, usar esto -->
+    <!--<input type="text" data-ng-model="filterText.name"/>-->
+    <br/>
+</div>
+
+
+<div data-ng-init="customers=[{id: 1, name: 'Jorge Arévalo', city: 'Madrid', 'fecha_alta': '2014-07-12', 'ultima_factura': 1550.5485363}, {id: 2, name: 'Elena Nieto del Bosque', city: 'Toledo', 'fecha_alta': '2010-01-23', 'ultima_factura': 1800.5435363}, {id: 3, name: 'Javier Ucto', city: 'Murcia', 'fecha_alta': '2015-12-02', 'ultima_factura': 2100.5435363}, {id: 4, name: 'Jose Villanas', city: 'Córdoba', 'fecha_alta': '2006-04-15', 'ultima_factura': 988.5435363}, {id: 5, name: 'Marta Burete', city: 'Gijón', 'fecha_alta': '2009-08-15', 'ultima_factura': 1250.5435363}]">
+
+    <p>El listado de clientes es</p>
+
+    <!-- Listado de clientes incluyendo nombre y ciudad, filtrando por el nombre introducido arriba, ordenados por fecha de alta descendente, con la ciudad en mayúsculas 
+        y cantidad de factura redondeada a 2 decimales -->
+    <ul>
+        <li data-ng-repeat="cust in customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
+    </ul>
+
+
+    <!-- NOTA: Si cambiamos elementos del array, ng-repeat elimina todos los elementos del DOM y los
+        vuelve a crear. Para evitar eso, podemos usar track by, al que le especificaremos una clave primaria.
+        Esto asocia cada elemento repetido del DOM con un objeto Javascript, de manera que, salvo que los
+        modifiquemos, angular no los tocará.
+
+        En nuestro ejemplo:
+
+        <li data-ng-repeat="cust in customers track by cust.id">...</li>
+        -->
+
+</div>
+
+
+

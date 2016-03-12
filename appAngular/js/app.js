@@ -23,6 +23,10 @@
         .when('/ej02', {
             templateUrl: routesFolder + '/ej02/ej02.html',
         })
+        
+        .when('/ej03', {
+            templateUrl: routesFolder + '/ej03/ej03.html',
+        })
 
         .otherwise({
             redirectTo: '/'
