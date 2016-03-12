@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ejerciciosApp">
+    <head>
+        <title>Ejercicios AngularJS</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    </head>
+    <body>
+
+        <header>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">AngularJS</a>
+                </div>
+            </nav>
+        </header>
+
+        <section class="container-fluid">
+            <h3>Ejercicio 02: bucle con ngRepeat y expresiones</h3>
+
+            <div data-ng-init="names=['Jorge', 'Carlos', 'Victor', 'Jose']">
+
+                <!-- Bucle que recorra los nombres y los muestre en una lista -->
+                <ul>
+                    <li data-ng-repeat="name in names">{{$index}} - {{name}}</li>
+                </ul>
+
+                <!-- NOTA: Además de la variable 'name' creada dentro del bucle, se crean también otras variables:
+                    $index: Un número que indica el nº de elementos(de 0 a n-1).
+                    $first : Vale true si estamos en el primer elemento del bucle.
+                    $last : Vale true si estamos en el último elemento del bucle.
+                    $middle : Vale true si no estamos ni en el primer ni en el último elemento del bucle.
+                    $even : Vale true si estamos en un elemento con $index par. (El 0 es par).
+                    $odd : Vale true si estamos en un elemento con $index impar. (El 0 es par).
+
+                    Todas estas variable son muy útiles para cambiar el estilo de la filas.
+                -->
+
+                <!-- Ejemplo de uso de operadores lógicos en las expresiones -->
+                <p>La lista tiene {{names.length > 4 && 'más de 4 nombres' || '4 nombres o menos'}}</p>
+
+                <!-- Ejemplo de cómo se haría con jQuery lo mismo del párrafo superior -->    
+                <p id="parrafo-jquery"></p>
+                <script>
+
+                    var names = ['Jorge', 'Carlos', 'Victor', 'Jose'];
+
+                    if (names.length > 4) {
+                        $("#parrafo-jquery").text('La lista tiene más de 4 nombres');
+                    }
+
+                    else {
+                        $("#parrafo-jquery").text('La lista tiene 4 nombres o menos');
+                    }
+
+                </script>
+            </div>
+
+        </section>
+
+        <footer class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container-fluid">
+                <p class="text-muted">Curso AngularJS</p>
+            </div>
+        </footer>
+
+        <script src="js/vendor/jquery-1.12.1.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.js"></script>
+        <script src="js/vendor/angular-route.js"></script>
+        <script src="js/app.js"></script>
+        <script src="resueltos/ej04/ej04.js"></script>
+    </body>
+</html>

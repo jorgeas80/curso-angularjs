@@ -2,10 +2,10 @@
 
 <!-- Campo de texto para introducir nombre del cliente -->
 <div>
-   <label>Escriba el criterio de búsqueda aquí: </label>
-    
+    <label>Escriba el criterio de búsqueda aquí: </label>
+
     <input type="text" data-ng-model="filterText"/> 
-    
+
     <!-- NOTA: Si queremos que el filtrado de búsqueda se aplique solo al campo nombre de los objetos de abajo, usar esto -->
     <!--<input type="text" data-ng-model="filterText.name"/>-->
     <br/>
@@ -17,23 +17,25 @@
     <p>El listado de clientes es</p>
 
     <!-- Listado de clientes incluyendo nombre y ciudad, filtrando por el nombre introducido arriba, ordenados por fecha de alta descendente, con la ciudad en mayúsculas 
-        y cantidad de factura redondeada a 2 decimales -->
+y cantidad de factura redondeada a 2 decimales -->
     <ul>
         <li data-ng-repeat="cust in customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
     </ul>
 
 
     <!-- NOTA: Si cambiamos elementos del array, ng-repeat elimina todos los elementos del DOM y los
-        vuelve a crear. Para evitar eso, podemos usar track by, al que le especificaremos una clave primaria.
-        Esto asocia cada elemento repetido del DOM con un objeto Javascript, de manera que, salvo que los
-        modifiquemos, angular no los tocará.
+         vuelve a crear. Para evitar eso, podemos usar track by, al que le especificaremos una clave primaria.
+         Esto asocia cada elemento repetido del DOM con un objeto Javascript, de manera que, salvo que los
+         modifiquemos, angular no los tocará.
 
-        En nuestro ejemplo:
+         En nuestro ejemplo:
 
         <li data-ng-repeat="cust in customers track by cust.id">...</li>
-        -->
+    -->
 
+    <!-- NOTA: Si se quiere aprovechar para explicar la opción ng-options aquí, se puede usar este
+         ejemplo sencillo: http://cursoangularjs.es/doku.php?id=unidades:04_masdirectivas:05_ngoptions
+    -->
 </div>
-
 
 
