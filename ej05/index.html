@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="ejerciciosApp">
+    <head>
+        <title>Ejercicios AngularJS</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    </head>
+    <body>
+
+        <header>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">AngularJS</a>
+                </div>
+            </nav>
+        </header>
+
+        <section class="container-fluid" ng-controller="ej05Controller">
+
+            <h3>Ejercicio 05: herencia de $scope</h3>
+            
+            <h4>MAL</h4>
+
+            Accediendo directamente a la variable dentro del scope heredado:
+            <span data-ng-switch="show">
+                <input data-ng-switch-when="true" type="text" data-ng-model="theField" />
+            </span>
+            <br/>
+            Accediendo directamente a la variable en el scope padre:
+            <input type="text" data-ng-model="theField" />
+            <br/>
+            Valor de la variable:
+            {{theField}}
+            
+            <hr>
+            
+            <h4>BIEN</h4>
+
+            Accediendo a la variable a través de un objeto heredado por referencia:
+            <span data-ng-switch="obj.show">
+                <input data-ng-switch-when="true" type="text" data-ng-model="obj.theField" />
+            </span>
+            <br/>
+            Accediendo a la variable a través de un objeto en el scope padre:
+            <input type="text" data-ng-model="obj.theField" />
+            <br/>
+            Valor de la variable:
+            {{obj.theField}}
+
+
+        </section>
+
+        <footer class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container-fluid">
+                <p class="text-muted">Curso AngularJS</p>
+            </div>
+        </footer>
+
+        <script src="js/vendor/jquery-1.12.1.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.js"></script>
+        <script src="js/vendor/angular-route.js"></script>
+        <script src="js/ej05.js"></script>
+    </body>
+</html>
