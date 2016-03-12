@@ -12,10 +12,21 @@
     app.config(function ($routeProvider, routesFolder) {
         $routeProvider
 
-            // route for the home page
-            .when('/', {
-                templateUrl : routesFolder + '/home.html',
-            })
+        .when('/', {
+            templateUrl : routesFolder + '/home.html',
+        })
+        
+        .when('/ej01', {
+            templateUrl: routesFolder + '/ej01/ej01.html',
+        })
+        
+        .when('/ej02', {
+            templateUrl: routesFolder + '/ej02/ej02.html',
+        })
+
+        .otherwise({
+            redirectTo: '/'
+        });
     });
 })();
 

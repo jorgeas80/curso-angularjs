@@ -1,0 +1,42 @@
+<h3>Ejercicio 02: bucle con ngRepeat</h3>
+
+<div data-ng-init="names=['Jorge', 'Carlos', 'Victor', 'Jose']">
+
+    <!-- Bucle que recorra los nombres y los muestre en una lista -->
+    <ul>
+        <li data-ng-repeat="name in names">{{$index}} - {{name}}</li>
+    </ul>
+
+    <!-- NOTA: Además de la variable 'name' creada dentro del bucle, se crean también otras variables:
+        $index: Un número que indica el nº de elementos(de 0 a n-1).
+        $first : Vale true si estamos en el primer elemento del bucle.
+        $last : Vale true si estamos en el último elemento del bucle.
+        $middle : Vale true si no estamos ni en el primer ni en el último elemento del bucle.
+        $even : Vale true si estamos en un elemento con $index par. (El 0 es par).
+        $odd : Vale true si estamos en un elemento con $index impar. (El 0 es par).
+
+        Todas estas variable son muy útiles para cambiar el estilo de la filas.
+    -->
+    
+    
+    <!-- Ejemplo de uso de operadores lógicos en las expresiones -->
+    <p>La lista tiene {{names.length > 4 && 'más de 4 nombres' || '4 nombres o menos'}}</p>
+    
+    <!-- Ejemplo de cómo se haría con jQuery lo mismo del párrafo superior -->    
+    <p id="parrafo-jquery"></p>
+    <script>
+    
+        var names = ['Jorge', 'Carlos', 'Victor', 'Jose'];
+        
+        if (names.length > 4) {
+            $("#parrafo-jquery").text('La lista tiene más de 4 nombres');
+        }
+        
+        else {
+            $("#parrafo-jquery").text('La lista tiene 4 nombres o menos');
+        }
+    
+    </script>
+</div>
+
+
