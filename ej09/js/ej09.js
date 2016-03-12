@@ -48,7 +48,7 @@
 
 
     // Esta funcion es el controlador que asociamos a la vista del ej06
-    function ej08Controller($scope, configData, customer) {
+    function ej09Controller($scope, configData, customer) {
 
         // Aquí ya estamos usando el provider como si fuera un factory
         $scope.customers = customer.getCustomers();
@@ -89,22 +89,13 @@
             
             // Aquí estamos pasandole a la directiva argumentos, para que 
             // pueda crear su propio scope a partir de elementos copiados
-            // del scope padre. Lo metemos todo en un span porque replace:true nos 
-            // fuerza a generar un solo elemento HTML. Si no, da error.
-            // Aquí estaríamos consiguiendo dos cosas:
-            // 1. Separar la directiva del controlador, pero a la vez
-            // 2. Poder utilizar variables que vengan del controlador
-            // El problema es que el enlace es unidireccional. Si la directiva nos
-            // permitiera cambiar el valor de alguna de las variables del scope
-            // (ej: a través de un campo input), el controlador no se enteraría.
-            // Para hacer el enlace bidireccional,
-            // usamos "=" en vez de "@". Lo veremos en el siguiente ejemplo
+            // del scope padre. Además, estamos sincronizando los elementos
             template: "<span><p>{{text}}</p><ul><li><strong>Año: </strong> {{year}}</li><li><strong>Trimestre: </strong> {{quarter}}</li></ul></span>",
             
             scope: {
-                year: "@",
-                quarter: "@",
-                text: "@"
+                year: "=",
+                quarter: "=",
+                text: "="
             }
         }
 
@@ -112,7 +103,7 @@
     });
 
 
-    app.controller('ej08Controller', ej08Controller);
-    ej08Controller.$inject = ['$scope', 'configData', 'customer'];
+    app.controller('ej09Controller', ej09Controller);
+    ej09Controller.$inject = ['$scope', 'configData', 'customer'];
 
 })();

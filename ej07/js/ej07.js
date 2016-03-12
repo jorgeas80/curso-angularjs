@@ -91,6 +91,11 @@
             // directiva. Esto no es reusable. Depende del controlador.
             // Realmente podríamos hacer lo mismo con ng-include
             template: "<ul><li><strong>Año: </strong> {{configuration.year}}</li><li><strong>Trimestre: </strong> {{configuration.quarter}}</li></ul>",
+            
+            // Si añadimos la opción
+            //scope: true,
+            // En lugar de compartir el scope con en controlador lo heredaríamos.
+            // Es el comportamiento de directivas como ng-if o ng-switch
         }
 
         return directiveDefinitionObject;

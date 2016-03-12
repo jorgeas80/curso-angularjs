@@ -23,9 +23,9 @@
             </nav>
         </header>
 
-        <section class="container-fluid" ng-controller="ej08Controller">
+        <section class="container-fluid" ng-controller="ej09Controller">
 
-            <h3>Ejercicio 08: creación de directivas pasándole argumentos (isolate scope I)</h3>
+            <h3>Ejercicio 09: creación de directivas sincronizando argumentos (isolate scope II)</h3>
 
             <!-- Campo de texto para introducir nombre del cliente -->
             <div>
@@ -42,10 +42,16 @@
 
             <div>
                 
-                <!-- Ahora le estamos pasando argumentos a la directiva. Vamos a generar también el párrafo
-                con el texto encima del ul, ya 
-                que estamos. -->
-                <yearly-data text="Datos del año fiscal" year="{{configuration.year}}" quarter="{{configuration.quarter}}"></yearly-data>
+                <!-- Ahora le estamos pasando argumentos a la directiva. Ojo a las comillas simples dentro de text. Dado que vamos a crear un enlace bidireccional entre 
+                controlador y directiva, las
+                variables tienen que existir en
+                ambos lados. La variable text no
+                existe en el controlador (ver
+                ej_09.js), de manera que la 
+                definimos aquí. Como hace ng-model.
+                También prestar atención a que ya no pasamos los parámetros con {{}}. 
+                Se cogen del controlador. -->
+                <yearly-data text="'Datos del año fiscal'" year="configuration.year" quarter="configuration.quarter"></yearly-data>
 
                
                 <p>El listado de clientes es</p>
@@ -80,6 +86,6 @@ En nuestro ejemplo:
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/angular.js"></script>
         <script src="js/vendor/angular-route.js"></script>
-        <script src="js/ej08.js"></script>
+        <script src="js/ej09.js"></script>
     </body>
 </html>
