@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ejerciciosApp">
+<html lang="en" data-ng-app="">
     <head>
         <title>Ejercicios AngularJS</title>
         <meta charset="utf-8">
@@ -43,9 +43,13 @@
                 <p>El listado de clientes es</p>
 
                 <!-- Listado de clientes incluyendo nombre y ciudad, filtrando por el nombre introducido arriba, ordenados por fecha de alta descendente, con la ciudad en mayúsculas 
-y cantidad de factura redondeada a 2 decimales -->
+y cantidad de factura con el símbolo de divisa y redondeada a 2 decimales -->
                 <ul>
-                    <li data-ng-repeat="cust in customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
+                    <li data-ng-repeat="cust in customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | currency}}</li>
+                    
+                    <!-- El filtro currency ya redondea a 2 decimales, además de poner el símbolo de divisa. La otra opción sería:
+                    (cust.ultima_factura | number: 2) € .
+                    Recordar que el símbolo es el del euro porque tenemos incluido abajo el js del locale para España -->
                 </ul>
 
 
@@ -75,6 +79,8 @@ y cantidad de factura redondeada a 2 decimales -->
         <script src="js/vendor/jquery-1.12.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/angular.js"></script>
-        <script src="js/vendor/angular-route.js"></script>
+        
+        <!-- Para el simbolo de euro, por ej -->
+        <script src="js/vendor/angular-locale_es-es.js"></script>
     </body>
 </html>

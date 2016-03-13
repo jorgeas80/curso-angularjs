@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+    <head>
+        <title>Ejercicios AngularJS</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    </head>
+    <body>
+
+        <header>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">AngularJS</a>
+                </div>
+            </nav>
+        </header>
+
+        <section class="container-fluid">
+
+            <h3>Ejercicio 12: validación de formularios I</h3>
+
+            <form name="miFormulario" >
+                Nombre:<input type="text" ng-model="model.nombre" name="nombre" required >
+                <br>
+                Correo electronico:<input type="text" ng-model="model.email" name="email" required>
+            </form>
+
+            <h2>Formulario</h2>
+            miFormulario.$pristine:  {{miFormulario.$pristine}}
+            <br>
+            miFormulario.$dirty:  {{miFormulario.$dirty}}
+            <br>
+            miFormulario.$valid:  {{miFormulario.$valid}}
+            <br>
+            miFormulario.$invalid:  {{miFormulario.$invalid}}
+
+
+            <h2>Campo Nombre</h2>
+            miFormulario.nombre.$pristine:  {{miFormulario.nombre.$pristine}}
+            <br>
+            miFormulario.nombre.$dirty:  {{miFormulario.nombre.$dirty}}
+            <br>
+            miFormulario.nombre.$valid:  {{miFormulario.nombre.$valid}}
+            <br>
+            miFormulario.nombre.$invalid:  {{miFormulario.nombre.$invalid}}
+
+
+            <h2>Campo email</h2>
+            miFormulario.email.$pristine:  {{miFormulario.email.$pristine}}
+            <br>
+            miFormulario.email.$dirty:  {{miFormulario.email.$dirty}}
+            <br>
+            miFormulario.email.$valid:  {{miFormulario.email.$valid}}
+            <br>
+            miFormulario.email.$invalid:  {{miFormulario.email.$invalid}}
+
+
+        </section>
+
+        <footer class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container-fluid">
+                <p class="text-muted">Curso AngularJS</p>
+            </div>
+        </footer>
+
+        <script src="js/vendor/jquery-1.12.1.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.js"></script>
+    </body>
+</html>

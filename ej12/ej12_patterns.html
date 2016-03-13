@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <title>Ejercicios AngularJS</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    </head>
+    <body>
+
+        <header>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">AngularJS</a>
+                </div>
+            </nav>
+        </header>
+
+        <section class="container-fluid" data--ng-controller="i18nController">
+
+            <h3>Ejercicio 12: validación de formularios II (i18n)</h3>
+
+            <form name="miFormulario" novalidate >
+               
+               <!-- Uso de ng-pattern -->
+                Nombre:<input type="text" ng-model="model.nombre" name="nombre" ng-maxlength="50" ng-minlength="3" ng-required="requeridoNombre" ng-pattern="patternNombre" >
+                <br>
+                Correo electronico:<input type="email" ng-model="model.correo" name="correo" >
+                <br>
+                Edad:<input type="number" ng-model="model.edad" name="edad" min="18" max="99" >
+                <br>
+                Sitio web:<input type="url" ng-model="model.sitioweb" name="sitioweb"  >
+            </form>
+            <br>
+            miFormulario.nombre.$error.pattern:  {{miFormulario.nombre.$error.pattern}}      
+            <br>
+            miFormulario.nombre.$error.required:  {{miFormulario.nombre.$error.required}}      
+            <br>
+            miFormulario.nombre.$error.minlength:  {{miFormulario.nombre.$error.minlength}}     
+            <br>
+            miFormulario.nombre.$error.maxlength:  {{miFormulario.nombre.$error.maxlength}}
+            <br>
+            miFormulario.correo.$error.email:  {{miFormulario.correo.$error.email}} 
+            <br>
+            miFormulario.edad.$error.number:  {{miFormulario.edad.$error.number}}
+            <br>
+            miFormulario.edad.$error.min:  {{miFormulario.edad.$error.min}}
+            <br>
+            miFormulario.edad.$error.max:  {{miFormulario.edad.$error.max}}    
+            <br>
+            miFormulario.sitioweb.$error.url:  {{miFormulario.sitioweb.$error.url}}     
+
+        </section>
+
+        <footer class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container-fluid">
+                <p class="text-muted">Curso AngularJS</p>
+            </div>
+        </footer>
+
+        <script src="js/vendor/jquery-1.12.1.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.js"></script>
+        <script src="js/ej12_patterns.js"></script>
+    </body>
+</html>
