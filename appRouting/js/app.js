@@ -1,3 +1,4 @@
+
 // Envolvemos el componente AngularJS en una IIFE, para eliminar las variables del scope global
 (function() {
     'use strict';
@@ -6,7 +7,7 @@
     var app = angular.module('ejerciciosApp', ['ngRoute']);
 
     // Servicio para iniciar las rutas
-    app.constant('routesFolder', 'resueltos');
+    app.constant('routesFolder', 'templates');
 
     // Las rutas
     app.config(function ($routeProvider, routesFolder) {
