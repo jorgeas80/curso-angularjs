@@ -23,15 +23,15 @@
             </nav>
         </header>
 
-        <section class="container-fluid" ng-controller="ej09Controller">
+        <section class="container-fluid" ng-controller="ej10Controller">
 
-            <h3>Ejercicio 09: creación de directivas sincronizando argumentos (isolate scope II)</h3>
+            <h3>Ejercicio 10: creación de directivas con manipulación de DOM</h3>
 
             <!-- Campo de texto para introducir nombre del cliente -->
             <div>
                 <label>Escriba el criterio de búsqueda aquí: </label>
-
-                <input type="text" data-ng-model="filterText"/> 
+                <input type="text" data-ng-model="filterText"/> <br>
+                
 
                 <!-- NOTA: Si queremos que el filtrado de búsqueda se aplique solo al campo nombre de los objetos de abajo, usar esto -->
                 <!--<input type="text" data-ng-model="filterText.name"/>-->
@@ -41,7 +41,11 @@
 
 
             <div>
-                
+               
+                <!-- Añadimos estas directivas para mostrar estado de servidores -->
+                <ca-status-server color="verde" texto="Servidor primario"></ca-status-server>
+                <ca-status-server color="rojo" texto="Servidor de backup"></ca-status-server>
+                                
                 <!-- Ahora le estamos pasando argumentos a la directiva. Ojo a las comillas simples dentro de text. Dado que vamos a crear un enlace bidireccional entre 
                 controlador y directiva, las
                 variables tienen que existir en
@@ -51,7 +55,7 @@
                 definimos aquí. Como hace ng-model.
                 También prestar atención a que ya no pasamos los parámetros con {{}}. 
                 Se cogen del controlador. -->
-                <ca-yearly-data text="'Datos del año fiscal'" year="configuration.year" quarter="configuration.quarter"></ca-yearly-data>
+                <yearly-data text="'Datos del año fiscal'" year="configuration.year" quarter="configuration.quarter"></yearly-data>
 
                
                 <p>El listado de clientes es</p>
@@ -86,6 +90,6 @@ En nuestro ejemplo:
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/angular.js"></script>
         <script src="js/vendor/angular-route.js"></script>
-        <script src="js/ej09.js"></script>
+        <script src="js/ej10.js"></script>
     </body>
 </html>

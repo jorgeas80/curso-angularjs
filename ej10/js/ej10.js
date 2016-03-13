@@ -48,7 +48,7 @@
 
 
     // Esta funcion es el controlador que asociamos a la vista del ej06
-    function ej09Controller($scope, configData, customer) {
+    function ej10Controller($scope, configData, customer) {
 
         // Aquí ya estamos usando el provider como si fuera un factory
         $scope.customers = customer.getCustomers();
@@ -81,17 +81,17 @@
     });
 
     // Así creamos la directiva. Básicamente, devolvemos un factory
-    app.directive("caYearlyData", function() {
+    app.directive("yearlyData", function() {
 
         var directiveDefinitionObject = {
             restrict: "E",
             replace : true,
-            
+
             // Aquí estamos pasandole a la directiva argumentos, para que 
             // pueda crear su propio scope a partir de elementos copiados
             // del scope padre. Además, estamos sincronizando los elementos
             template: "<span><p>{{text}}</p><ul><li><strong>Año: </strong> {{year}}</li><li><strong>Trimestre: </strong> {{quarter}}</li></ul></span>",
-            
+
             scope: {
                 year: "=",
                 quarter: "=",
@@ -103,7 +103,45 @@
     });
 
 
-    app.controller('ej09Controller', ej09Controller);
-    ej09Controller.$inject = ['$scope', 'configData', 'customer'];
+    app.directive("caStatusServer",function() {
+
+        var directiveDefinitionObject ={
+            restrict:"E",
+            replace : true,
+            template:"<div>{{texto}}</div>",
+            scope:{
+                texto:"@"
+            },
+            
+            // Vamos a manipular el DOM de la directiva para añadirle clases en función de un atributo
+            link:function(scope, iElement, iAttrs, controller, transcludeFn) {
+
+                switch (iAttrs.color) {
+                    case "rojo":
+                        iElement.addClass("alert");
+                        iElement.addClass("alert-danger")
+                        break;
+                    case "verde":
+                        iElement.addClass("alert");
+                        iElement.addClass("alert-success")
+                        break;
+                    case "azul":
+                        iElement.addClass("alert");
+                        iElement.addClass("alert-info")
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
+        }
+
+        return directiveDefinitionObject;
+    });
+
+
+    app.controller('ej10Controller', ej10Controller);
+    ej10Controller.$inject = ['$scope', 'configData', 'customer'];
 
 })();
