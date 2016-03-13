@@ -17,7 +17,7 @@ app.controller("MainCtrl", ['$scope', '$http', '$q', '$timeout',function($scope,
         var response=$http(config);
 
         response.success(function(data, status, headers, config) {
-            var resultado = angular.fromJson(data);
+            var resultado = angular.toJson(data);
             defered.resolve(resultado);
         });
 
