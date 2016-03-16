@@ -48,11 +48,13 @@
 
 
     // Esta funcion es el controlador que asociamos a la vista del ej06
-    function ej06Controller($scope, configData, customer) {
+    function ej06Controller($scope, $log, configData, customer) {
         
         // Aquí ya estamos usando el provider como si fuera un factory
         $scope.customers = customer.getCustomers();
         $scope.configuration = configData;
+        
+        $log.debug("Depurando el controlador");
     }
 
     // Cargamos la aplicacion AngularJS
@@ -70,8 +72,13 @@
     //de la cadena "Provider". AngularJS añade automáticamente el sufijo 
     // "Provider" detrás del nombre de todos los provider en el bloque config. 
     // Aquí lo confirma: http://stackoverflow.com/a/20881705/593722
-    app.config(function(configData, customerProvider) {
-        // Angular también tiene un servicio $log más completo que se podría usar
+    
+    // Aquí estamos pasando un $logProvider para configurar el servicio de log
+    // Podemos inyectar otros provider, pero NO servicios, porque angular aun
+    // no está corriendo
+    app.config(function($logProvider, configData, customerProvider) {
+        $logProvider.debugEnabled(false);
+        
         console.log("DEBUG - Año: " + configData.year);
         console.log("DEBUG - Trimestre: " + configData.quarter); 
         
@@ -81,6 +88,6 @@
     });
 
     app.controller('ej06Controller', ej06Controller);
-    ej06Controller.$inject = ['$scope', 'configData', 'customer'];
+    ej06Controller.$inject = ['$scope', '$log', 'configData', 'customer'];
 
 })();

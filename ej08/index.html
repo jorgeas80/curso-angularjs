@@ -46,6 +46,24 @@
                 con el texto encima del ul, ya 
                 que estamos. -->
                 <yearly-data text="Datos del año fiscal" year="{{configuration.year}}" quarter="{{configuration.quarter}}"></yearly-data>
+                <!-- IMPORTANTE: Aquí estamos definiendo year en la directiva, y en el js veremos que
+                 se copia del controlador mediante "@". El hecho de que, al mismo tiempo, estemos
+                 asignando desde aquí a year un valor que viene del controlador es anecdótico.
+                 Si hubiéramos puesto aquí year="2016" y la "@" en el js, sería exactamente igual: le 
+                 estaríamos diciendo a la función de creación de la directiva que cogiera year del 
+                 valor del atributo "year" aquí, en el HTML.
+                 Lo que hemos hecho aquí es una manera de "enlazar" la directiva con el controlador, 
+                 haciendo que los atributos de la directiva vengan de campos del controlador. El 
+                 problema de este enlace es que es unidireccional: si yo ahora cambio el atributo "year"
+                 en la directiva, el controlador no se entera -->
+                 
+                <!-- Ejemplo de cómo cambiaría el atributo year en la directiva en el fichero ej08.js,
+                 comentado -->
+                
+                <!-- Esto es solo un chivato para ver que el scope de la directiva y el del controlador
+                no están conectados. Cuando cambiemos "year" en el scope de la directiva, esto no va a
+                cambiar -->
+                <p>Año: {{configuration.year}}</p>
 
                
                 <p>El listado de clientes es</p>

@@ -103,6 +103,8 @@
     });
 
 
+    // Podemos inyectarle servicios en la función de definición, y así podríamos usarlos desde dentro
+    // de la función de link. Ver http://stackoverflow.com/a/20756918/593722
     app.directive("caStatusServer",function() {
 
         var directiveDefinitionObject ={
@@ -114,6 +116,8 @@
             },
             
             // Vamos a manipular el DOM de la directiva para añadirle clases en función de un atributo
+            // También podría asignar esas clases en función de otra cosa (ej: el status REAL del servidor)
+            // Para eso se pueden inyectar servicios directamente en la función de definición de la directiva
             link:function(scope, iElement, iAttrs, controller, transcludeFn) {
 
                 switch (iAttrs.color) {

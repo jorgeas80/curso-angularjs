@@ -90,7 +90,12 @@
             // Aquí estamos pasandole a la directiva argumentos, para que 
             // pueda crear su propio scope a partir de elementos copiados
             // del scope padre. Además, estamos sincronizando los elementos
-            template: "<span><p>{{text}}</p><ul><li><strong>Año: </strong> {{year}}</li><li><strong>Trimestre: </strong> {{quarter}}</li></ul></span>",
+            //template: "<span><p>{{text}}</p><ul><li><strong>Año: </strong> {{year}}</li><li><strong>Trimestre: </strong> {{quarter}}</li></ul></span>",
+            
+            // Esto es un ejemplo de lo que pasaría si cambiáramos el valor de una de las variables
+            // del scope de la directiva (el atributo 'year' en este caso): el controlador sí se 
+            // enteraría porque el enlace mediante "=" es bidireccional
+            template: "<span><p>{{text}}</p><ul><li><strong>Año: </strong> {{year}} <button ng-click=\"year='2015'\">Cambiar valor de scope.year de la directiva</button></li><li><strong>Trimestre: </strong> {{quarter}}</li></ul></span>",
             
             scope: {
                 year: "=",

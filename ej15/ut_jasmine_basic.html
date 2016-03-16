@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title> Pruebas con Jasmine </title>
+<script src="libs/jasmine.js"></script>
+<script src="libs/jasmine-html.js"></script>
+<script src="libs/boot.js"></script>
+<script src="script.js"></script>
+
+<link rel="stylesheet" href="libs/jasmine.css">
+</head>
+<body>
+
+
+<script>
+	
+	describe("Bloque de pruebas To Be",function(){
+		
+		var a = true;
+		
+		it("test1", function(){
+			expect(a).toBe(true);
+		})
+		
+		var b = 1;		
+		it("test2", function(){
+			expect(b).not.toBe(true);
+		})
+	})
+	
+	describe("Bloque de pruebas Equal",function(){
+		
+		var a = true;
+		
+		it("test1", function(){
+			expect(a).toEqual(true);
+		})
+		
+		var b = true;		
+		it("test2", function(){
+			expect(b).toEqual(true);
+		})
+		
+		
+		var obj = {nombre:'Pepito', edad:25};
+		var obj2 = {nombre:'Pepito', edad:25};
+		
+		it("test3", function(){
+			expect(obj).not.toBe(obj2);
+			expect(obj).toEqual(obj2);
+		})
+		
+		var variable;
+		
+		it("test4", function(){
+			expect(variable).toBeUndefined();
+			expect(obj).not.toBeUndefined();
+			
+			expect(variable).not.toBeDefined();
+			expect(obj).toBeDefined();
+		})
+		
+	})
+	
+	describe("Bloque de pruebas fichero Externo", function(){
+		it("test1", function(){
+			expect(suma(1,2)).toEqual(3);
+			expect(suma(1,5)).not.toEqual(3);
+			expect(suma('1','2')).not.toEqual(3);
+		})
+	})
+	
+</script>
+
+</body>
+</html>

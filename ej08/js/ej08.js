@@ -99,10 +99,19 @@
             // (ej: a través de un campo input), el controlador no se enteraría.
             // Para hacer el enlace bidireccional,
             // usamos "=" en vez de "@". Lo veremos en el siguiente ejemplo
-            template: "<span><p>{{text}}</p><ul><li><strong>Año: </strong> {{year}}</li><li><strong>Trimestre: </strong> {{quarter}}</li></ul></span>",
+            //template: "<span><p>{{text}}</p><ul><li><strong>Año: </strong> {{year}}</li><li><strong>Trimestre: </strong> {{quarter}}</li></ul></span>",
+            
+            // Esto es un ejemplo de lo que pasaría si cambiáramos el valor de una de las variables
+            // del scope de la directiva (el atributo 'year' en este caso): el controlador no se 
+            // enteraría porque el enlace mediante "@" es unidireccional
+            template: "<span><p>{{text}}</p><ul><li><strong>Año: </strong> {{year}} <button ng-click=\"year='2015'\">Cambiar valor de scope.year de la directiva</button></li><li><strong>Trimestre: </strong> {{quarter}}</li></ul></span>",
             
             scope: {
-                year: "@",
+                // Esto copia el valor del atributo "year" en el scope de la directiva. Sea cuál sea el valor de 
+                // "year". En nuestro ejemplo particular, en el HTML hemos hecho que year sea igual a un valor
+                // del scope, pero podríamos haberlo escrito a pelo: 2016. Lo importante es no desviarnos de la
+                // idea de que la "@" hace que el valor se copie DESDE el atributo HTML HACIA el scope de la directiva
+                year: "@", 
                 quarter: "@",
                 text: "@"
             }

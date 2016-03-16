@@ -52,6 +52,13 @@
                 También prestar atención a que ya no pasamos los parámetros con {{}}. 
                 Se cogen del controlador. -->
                 <ca-yearly-data text="'Datos del año fiscal'" year="configuration.year" quarter="configuration.quarter"></ca-yearly-data>
+                
+                <!-- Ejemplo de cómo cambiaría el atributo year en la directiva en el fichero ej09.js,
+                 comentado -->
+                
+                <!-- Esto es solo un chivato para ver que el scope de la directiva y el del controlador
+                están conectados. Cuando cambiemos "year" en el scope de la directiva, esto va a cambiar -->
+                <p>Año: {{configuration.year}}</p>
 
                
                 <p>El listado de clientes es</p>
