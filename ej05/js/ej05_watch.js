@@ -34,8 +34,11 @@
             if (newValue === oldValue) {
                 return;
             }
+            
+            console.log(typeof oldValue);
+            console.log(typeof newValue);
 
-            alert("El valor ha cambiado");
+            alert("El valor ha cambiado: " + newValue);
         });
 
         $scope.getNombreCompleto=function() {
