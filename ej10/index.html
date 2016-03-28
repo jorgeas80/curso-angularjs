@@ -23,7 +23,7 @@
             </nav>
         </header>
 
-        <section class="container-fluid" ng-controller="ej10Controller">
+        <section class="container-fluid" ng-controller="ej10Controller as vm">
 
             <h3>Ejercicio 10: creación de directivas con manipulación de DOM</h3>
 
@@ -55,7 +55,7 @@
                 definimos aquí. Como hace ng-model.
                 También prestar atención a que ya no pasamos los parámetros con {{}}. 
                 Se cogen del controlador. -->
-                <yearly-data text="'Datos del año fiscal'" year="configuration.year" quarter="configuration.quarter"></yearly-data>
+                <yearly-data text="'Datos del año fiscal'" year="vm.configuration.year" quarter="vm.configuration.quarter"></yearly-data>
 
                
                 <p>El listado de clientes es</p>
@@ -63,7 +63,7 @@
                 <!-- Listado de clientes incluyendo nombre y ciudad, filtrando por el nombre introducido arriba, ordenados por fecha de alta descendente, con la ciudad en     
 mayúsculas y cantidad de factura redondeada a 2 decimales -->
                 <ul>
-                    <li data-ng-repeat="cust in customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
+                    <li data-ng-repeat="cust in vm.customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
                 </ul>
 
 

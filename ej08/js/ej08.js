@@ -1,18 +1,30 @@
 // Envolvemos el componente AngularJS en una IIFE, para eliminar las variables del scope global
 (function() {
     'use strict';
+    
+    // Cargamos la aplicacion AngularJS
+    angular
+        .module('ejerciciosApp', [])
+        .provider('customer', customerPvd)
+        .constant('configData', {
+            year: 2016,
+            quarter: 'Q1'
+        })
+        .config(function(configData, customerProvider) {
+            console.log("DEBUG - Año: " + configData.year);
+            console.log("DEBUG - Trimestre: " + configData.quarter); 
+
+            // Podemos usar aquí el provider para configurarlo. Por lo demás,
+            // funciona como un factory
+            customerProvider.initCustomers();
+        })
+    
+        .directive("yearlyData", yearlyDataDirective)
+        .controller('ej08Controller', ej08Controller);
+        ej08Controller.$inject = ['configData', 'customer'];
 
 
-    // El provider es la base para el resto de servicios. La diferencia es que
-    // provider permite ser configurado previamente a su instanciación.
-    // Una vez configurado, provider provee lo que devuelva su método $get.
-    // Básicamente, constant, value, service y factory son wrappers sobre
-    // provider. Lo que devuelve el método $get de esos wrappers es la lógica
-    // que nosotros creemos al definirlos.
-    // Como el ciclo de vida de un provider empieza antes de iniciar la aplicación,
-    // podemos pasar un provider como dependencia de un bloque config, o de
-    // otro bloque provider. Una vez se arranque la aplicación Angular, el
-    // provider expondrá su método $get como un factory.
+    
     function customerPvd() {
 
         // Esto se ejecutaría antes de iniciar la app. Podemos configurar el provider.
@@ -45,72 +57,52 @@
             return f;
         }
     }
-
-
-    // Esta funcion es el controlador que asociamos a la vista del ej06
-    function ej08Controller($scope, configData, customer) {
-
-        // Aquí ya estamos usando el provider como si fuera un factory
-        $scope.customers = customer.getCustomers();
-        $scope.configuration = configData;
-    }
-
-    // Cargamos la aplicacion AngularJS
-    var app = angular.module('ejerciciosApp', []);
-
-    app.provider('customer', customerPvd);
-
-    // Valores que no vamos a cambiar en nuestra aplicación
-    app.constant('configData', {
-        year: 2016,
-        quarter: 'Q1'
-    });
-
-    // OJO: El segundo argumento es el nombre del provider ('customer') seguido 
-    //de la cadena "Provider". AngularJS añade automáticamente el sufijo 
-    // "Provider" detrás del nombre de todos los provider en el bloque config. 
-    // Aquí lo confirma: http://stackoverflow.com/a/20881705/593722
-    app.config(function(configData, customerProvider) {
-        // Angular también tiene un servicio $log más completo que se podría usar
-        console.log("DEBUG - Año: " + configData.year);
-        console.log("DEBUG - Trimestre: " + configData.quarter); 
-
-        // Podemos usar aquí el provider para configurarlo. Por lo demás,
-        // funciona como un factory
-        customerProvider.initCustomers();
-    });
-
+        
     // Así creamos la directiva. Básicamente, devolvemos un factory
-    app.directive("yearlyData", function() {
+    function yearlyDataDirective() {
 
         var directiveDefinitionObject = {
             restrict: "E",
             replace : true,
             
-            // Aquí estamos pasandole a la directiva argumentos, para que 
-            // pueda crear su propio scope a partir de elementos copiados
-            // del scope padre. Lo metemos todo en un span porque replace:true nos 
-            // fuerza a generar un solo elemento HTML. Si no, da error.
-            // Aquí estaríamos consiguiendo dos cosas:
-            // 1. Separar la directiva del controlador, pero a la vez
-            // 2. Poder utilizar variables que vengan del controlador
-            // El problema es que el enlace es unidireccional. Si la directiva nos
-            // permitiera cambiar el valor de alguna de las variables del scope
-            // (ej: a través de un campo input), el controlador no se enteraría.
-            // Para hacer el enlace bidireccional,
-            // usamos "=" en vez de "@". Lo veremos en el siguiente ejemplo
-            //template: "<span><p>{{text}}</p><ul><li><strong>Año: </strong> {{year}}</li><li><strong>Trimestre: </strong> {{quarter}}</li></ul></span>",
-            
-            // Esto es un ejemplo de lo que pasaría si cambiáramos el valor de una de las variables
-            // del scope de la directiva (el atributo 'year' en este caso): el controlador no se 
-            // enteraría porque el enlace mediante "@" es unidireccional
-            template: "<span><p>{{text}}</p><ul><li><strong>Año: </strong> {{year}} <button ng-click=\"year='2015'\">Cambiar valor de scope.year de la directiva</button></li><li><strong>Trimestre: </strong> {{quarter}}</li></ul></span>",
+            /**
+             * Aquí estamos pasandole a la directiva argumentos, para que 
+             * pueda crear su propio scope a partir de elementos copiados
+             * del scope padre. Lo metemos todo en un span porque replace:true nos 
+             * fuerza a generar un solo elemento HTML. Si no, da error.
+             * Aquí estamos consiguiendo dos cosas:
+             * 1. Separar la directiva del controlador, pero a la vez
+             * 2. Poder utilizar variables que vengan del controlador
+             * El problema es que el enlace es unidireccional. Si cambiamos el valor 
+             * de una de las variables del scope de la directiva (el atributo 'year' 
+             * en este caso), el controlador no se entera porque el enlace mediante 
+             * "@" es * unidireccional
+             **/
+            template: [
+                "<span>",
+                    "<p>{{text}}</p>",
+                    "<ul>",
+                        "<li>",
+                            "<strong>Año: </strong> {{year}}", 
+                            "<button ng-click='year=2015'>Cambiar valor de scope.year de la directiva</button>",
+                        "</li>",
+                        "<li>",
+                            "<strong>Trimestre: </strong> {{quarter}}",
+                        "</li>",
+                    "</ul>",
+                "</span>",
+            ].join(''),
             
             scope: {
-                // Esto copia el valor del atributo "year" en el scope de la directiva. Sea cuál sea el valor de 
-                // "year". En nuestro ejemplo particular, en el HTML hemos hecho que year sea igual a un valor
-                // del scope, pero podríamos haberlo escrito a pelo: 2016. Lo importante es no desviarnos de la
-                // idea de que la "@" hace que el valor se copie DESDE el atributo HTML HACIA el scope de la directiva
+                /**
+                 * Esto copia el valor del atributo "year" en el scope de la 
+                 * directiva. Sea cuál sea el valor de "year". En nuestro ejemplo 
+                 * particular, en el HTML hemos hecho que year sea igual a un valor
+                 * del scope, pero podríamos haberlo escrito a pelo: 2016. Lo
+                 * importante es no desviarnos de la idea de que la "@" hace que el 
+                 * valor se copie DESDE el atributo HTML HACIA el scope de la 
+                 * directiva
+                 **/
                 year: "@", 
                 quarter: "@",
                 text: "@"
@@ -118,10 +110,16 @@
         }
 
         return directiveDefinitionObject;
-    });
+    }
+    
+    // Esta funcion es el controlador
+    function ej08Controller(configData, customer) {
+        
+        var vm = this;
 
-
-    app.controller('ej08Controller', ej08Controller);
-    ej08Controller.$inject = ['$scope', 'configData', 'customer'];
+        // Aquí ya estamos usando el provider como si fuera un factory
+        vm.customers = customer.getCustomers();
+        vm.configuration = configData;
+    }
 
 })();

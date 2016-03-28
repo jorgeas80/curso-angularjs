@@ -23,7 +23,7 @@
             </nav>
         </header>
 
-        <section class="container-fluid" ng-controller="ej08Controller">
+        <section class="container-fluid" ng-controller="ej08Controller as vm">
 
             <h3>Ejercicio 08: creación de directivas pasándole argumentos (isolate scope I)</h3>
 
@@ -45,7 +45,7 @@
                 <!-- Ahora le estamos pasando argumentos a la directiva. Vamos a generar también el párrafo
                 con el texto encima del ul, ya 
                 que estamos. -->
-                <yearly-data text="Datos del año fiscal" year="{{configuration.year}}" quarter="{{configuration.quarter}}"></yearly-data>
+                <yearly-data text="Datos del año fiscal" year="{{vm. configuration.year}}" quarter="{{vm.configuration.quarter}}"></yearly-data>
                 <!-- IMPORTANTE: Aquí estamos definiendo year en la directiva, y en el js veremos que
                  se copia del controlador mediante "@". El hecho de que, al mismo tiempo, estemos
                  asignando desde aquí a year un valor que viene del controlador es anecdótico.
@@ -63,7 +63,7 @@
                 <!-- Esto es solo un chivato para ver que el scope de la directiva y el del controlador
                 no están conectados. Cuando cambiemos "year" en el scope de la directiva, esto no va a
                 cambiar -->
-                <p>Año: {{configuration.year}}</p>
+                <p>Año: {{vm.configuration.year}}</p>
 
                
                 <p>El listado de clientes es</p>
@@ -71,7 +71,7 @@
                 <!-- Listado de clientes incluyendo nombre y ciudad, filtrando por el nombre introducido arriba, ordenados por fecha de alta descendente, con la ciudad en     
 mayúsculas y cantidad de factura redondeada a 2 decimales -->
                 <ul>
-                    <li data-ng-repeat="cust in customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
+                    <li data-ng-repeat="cust in vm.customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
                 </ul>
 
 
@@ -97,7 +97,6 @@ En nuestro ejemplo:
         <script src="js/vendor/jquery-1.12.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/angular.js"></script>
-        <script src="js/vendor/angular-route.js"></script>
         <script src="js/ej08.js"></script>
     </body>
 </html>

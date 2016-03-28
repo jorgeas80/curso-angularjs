@@ -23,14 +23,14 @@
             </nav>
         </header>
 
-        <section class="container-fluid" data--ng-controller="patternController">
+        <section class="container-fluid" data--ng-controller="patternController as vm">
 
             <h3>Ejercicio 12: validación de formularios II (patrones)</h3>
 
             <form name="miFormulario" novalidate >
                
                <!-- Uso de ng-pattern -->
-                Nombre:<input type="text" ng-model="model.nombre" name="nombre" ng-maxlength="50" ng-minlength="3" ng-required="requeridoNombre" ng-pattern="patternNombre" >
+                Nombre:<input type="text" ng-model="model.nombre" name="nombre" ng-maxlength="50" ng-minlength="3" ng-required="vm.requeridoNombre" ng-pattern="vm.patternNombre" >
                 <br>
                 Correo electronico:<input type="email" ng-model="model.correo" name="correo" >
                 <br>

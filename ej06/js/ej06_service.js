@@ -2,6 +2,26 @@
 (function() {
     'use strict';
     
+    // Cargamos la aplicacion AngularJS
+    angular
+        .module('ejerciciosApp', [])
+    
+        // Valores que no vamos a cambiar en nuestra aplicación
+        .constant('configData', {
+            year: 2016,
+            quarter: 'Q1'
+        })
+    
+     /**
+      * Servicio para obtener valores. Podríamos obtener los valores de un
+      * tercero, haciendo una llamada http, por ej. También podríamos declararle
+      * dependencias con $inject, como hacemos con el controlador
+      **/
+        .service('customerService', customerService)
+    
+        .controller('ej06Controller', ej06Controller);
+        ej06Controller.$inject = ['configData', 'customerService'];
+    
     // Esta función se usará para crear un service
     // Podríamos pasarle otros servicios como argumento
     function customerService() {
@@ -23,27 +43,12 @@
     }
     
     
-    // Esta funcion es el controlador que asociamos a la vista del ej04
-    function ej06Controller($scope, configData, customerService) {
-        $scope.customers = customerService.customers;
-        $scope.configuration = configData;
+    function ej06Controller(configData, customerService) {
+        
+        var vm = this;
+        
+        vm.customers = customerService.customers;
+        vm.configuration = configData;
     }
-    
-    // Cargamos la aplicacion AngularJS
-    var app = angular.module('ejerciciosApp', []);
-    
-     // Valores que no vamos a cambiar en nuestra aplicación
-    app.constant('configData', {
-        year: 2016,
-        quarter: 'Q1'
-    });
-    
-    // Servicio para obtener valores. Podríamos obtener los valores de un
-    // tercero, haciendo una llamada http, por ej. También podríamos declararle
-    // dependencias con $inject, como hacemos con el controlador
-    app.service('customerService', customerService);
-    
-    app.controller('ej06Controller', ej06Controller);
-    ej06Controller.$inject = ['$scope', 'configData', 'customerService'];
     
 })();

@@ -14,9 +14,10 @@
     }
     
     // Cargamos la aplicacion AngularJS
-    var app = angular.module('ejerciciosApp', []);
+    angular
+        .module('ejerciciosApp', [])    
+        .controller('ej04Controller', ej04Controller);
     
-    app.controller('ej04Controller', ej04Controller);
     ej04Controller.$inject = ['$scope'];
     
 })();

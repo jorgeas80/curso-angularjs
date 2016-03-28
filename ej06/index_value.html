@@ -23,7 +23,8 @@
             </nav>
         </header>
 
-        <section class="container-fluid" ng-controller="ej06Controller">
+        <!-- No tenemos porque poner 'as vm'. Podemos usar otro nombre -->
+        <section class="container-fluid" ng-controller="ej06Controller as miCtrl">
            
             <h3>Ejercicio 06: uso del servicio value</h3>
 
@@ -44,8 +45,8 @@
                 
                 <p>Datos del año fiscal</p>
                 <ul>
-                    <li><strong>Año: </strong> {{configuration.year}}</li>
-                    <li><strong>Trimestre: </strong> {{configuration.quarter}}</li>
+                    <li><strong>Año: </strong> {{miCtrl.configuration.year}}</li>
+                    <li><strong>Trimestre: </strong> {{miCtrl.configuration.quarter}}</li>
                 </ul>
 
                 <p>El listado de clientes es</p>
@@ -53,7 +54,7 @@
                 <!-- Listado de clientes incluyendo nombre y ciudad, filtrando por el nombre introducido arriba, ordenados por fecha de alta descendente, con la ciudad en     
                 mayúsculas y cantidad de factura redondeada a 2 decimales -->
                 <ul>
-                    <li data-ng-repeat="cust in customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
+                    <li data-ng-repeat="cust in miCtrl.customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
                 </ul>
 
 

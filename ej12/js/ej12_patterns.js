@@ -1,9 +1,17 @@
-var app = angular.module("app", []);
+// Envolvemos el componente AngularJS en una IIFE, para eliminar las variables del scope global
+(function() {
+    'use strict';
 
-// Esta es otra manera de especificar las dependencias para el inyector
-app.controller("patternController", ['$scope',function($scope) {
-
-  $scope.requeridoNombre=true;
-  $scope.patternNombre=/^[a-zA-ZñÑ]*$/;
-
-}]);
+    angular
+        .module("app", [])
+        .controller("patternController", patternController);
+    
+    
+    function patternController() {
+        var vm = this;
+  
+        vm.requeridoNombre=true;
+        vm.patternNombre=/^[a-zA-ZñÑ]*$/;
+    };
+    
+})();

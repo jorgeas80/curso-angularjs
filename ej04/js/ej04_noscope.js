@@ -2,11 +2,18 @@
 (function() {
     'use strict';
     
+    // Cargamos la aplicacion AngularJS
+    angular
+        .module('ejerciciosApp', [])
+        .controller('ej04Controller', ej04Controller);
+    
     // Esta funcion es el controlador que asociamos a la vista del ej04
     function ej04Controller() {
         
-        // Es mejor evitar el uso de 'this' porque es una palabra clave contextual (depende del contexto en el que se ejecute). Si lo usaramos en
-        // una funcion dentro de un controlador, podria cambiar su contexto
+        /** Es mejor evitar el uso de 'this' porque es una palabra clave 
+        * contextual (depende del contexto en el que se ejecute). Si lo usaramos 
+        * en una funcion dentro de un controlador, podria cambiar su contexto
+        **/
         var vm = this;
         
         vm.customers=[
@@ -18,9 +25,5 @@
         ];    
     }
     
-    // Cargamos la aplicacion AngularJS
-    var app = angular.module('ejerciciosApp', []);
-    
-    app.controller('ej04Controller', ej04Controller);
     
 })();
