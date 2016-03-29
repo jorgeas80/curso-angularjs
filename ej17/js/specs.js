@@ -59,8 +59,8 @@ describe('Testing a controller', function() {
   it('should start with foo and bar populated', function() {
     
     //just assert. $scope was set up in beforeEach() (above)
-    expect($scope.foo).toEqual('foo');
-    expect($scope.bar).toEqual('bar');
+    expect(ctrl.foo).toEqual('foo');
+    expect(ctrl.bar).toEqual('bar');
   });
   
   
@@ -68,13 +68,13 @@ describe('Testing a controller', function() {
    * Now let's test a simple function call. */
   it('should add !!! to foo when test1() is called', function (){
     //set up.
-    $scope.foo = 'x';
+    ctrl.foo = 'x';
     
     //make the call.
-    $scope.test1();
+    ctrl.test1();
     
     //assert
-    expect($scope.foo).toEqual('x!!!');
+    expect(ctrl.foo).toEqual('x!!!');
   });
   
   
@@ -83,13 +83,13 @@ describe('Testing a controller', function() {
    * and THEN test the value it's supposed to update. */
   it('should update baz when bar is changed', function (){
     //change bar
-    $scope.bar = 'test';
+    ctrl.bar = 'test';
     
     //$apply the change to trigger the $watch.
     $scope.$apply();
     
     //assert
-    expect($scope.baz).toEqual('testbaz');
+    expect(ctrl.baz).toEqual('testbaz');
   });
   
   
@@ -103,7 +103,7 @@ describe('Testing a controller', function() {
      properly. */
   it('should update fizz asynchronously when test2() is called', function (){
     // just make the call
-    $scope.test2();
+    ctrl.test2();
     
     // asser that it called the service method.
     expect(someServiceMock.someAsyncCall).toHaveBeenCalled();  
@@ -113,6 +113,6 @@ describe('Testing a controller', function() {
     $timeout.flush();
     
     // assert that it set $scope.fizz
-    expect($scope.fizz).toEqual('weee');    
+    expect(ctrl.fizz).toEqual('weee');    
   });
 });
