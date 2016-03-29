@@ -4,22 +4,20 @@ describe("myApp", function() {
  
     describe("SimpleController", function() {
  
-        var scope;
-        beforeEach(inject(function($rootScope, $controller) {
-            scope = $rootScope.$new();
-            $controller("SimpleController", {
-                $scope: scope
-            });
+        var SimpleController;
+                
+        beforeEach(inject(function($controller) {
+            SimpleController = $controller("SimpleController");
         }));
  
         it("should double the numbers x", function() {
-            scope.doubleIt();
-            expect(scope.x).toBe(6);
+            SimpleController.doubleIt();
+            expect(SimpleController.x).toBe(6);
         });
         
         it("should double the numbers y", function() {
-            scope.doubleIt();
-            expect(scope.y).toBe(8);
+            SimpleController.doubleIt();
+            expect(SimpleController.y).toBe(8);
         });
     });
 });

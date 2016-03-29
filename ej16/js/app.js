@@ -1,14 +1,19 @@
-var app = angular.module('myApp', []);
+(function() {
 
-var SimpleController = function ($scope) {
-    
-    $scope.x = 3;
-    $scope.y = 4;
-    $scope.doubleIt = function () {
-        $scope.x *= 2;
-        $scope.y *= 2;
-    };
-};
- 
-app.controller("SimpleController", 
-         ["$scope", SimpleController]);
+    angular
+        .module('myApp', [])
+        .controller('SimpleController', SimpleController);
+
+    function SimpleController() {
+        
+        var vm = this;
+        
+        vm.x = 3;
+        vm.y = 4;
+        vm.doubleIt = function () {
+            vm.x *= 2;
+            vm.y *= 2;
+        };
+    }
+
+})();

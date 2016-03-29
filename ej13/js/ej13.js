@@ -24,7 +24,7 @@
             }
         }
     }
-    
+
     function MainCtrl() {
         var vm = this;
         vm.data = { name: ''};
