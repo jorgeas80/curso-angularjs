@@ -34,29 +34,7 @@
                 );
             
             return promise;
-            
-            /*
-            var config={
-                method:"GET",
-                url:"http://jsonplaceholder.typicode.com/posts/1"
-            }
-
-            var response=$http(config);
-
-            response.success(function(data, status, headers, config) {
-                var resultado = angular.toJson(data);
-                defered.resolve(resultado);
-            });
-
-            response.error(function(data, status, headers, config) {
-                console.log("Ha fallado la petición. Estado HTTP:"+status);
-                defered.reject(data);
-            });
-
-            return promise;
-            */
         }
-
 
         
         var promise = httpAsincrona();
