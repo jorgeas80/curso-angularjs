@@ -23,17 +23,17 @@
             </nav>
         </header>
 
-        <section class="container-fluid" ng-controller="MainCtrl">
+        <section class="container-fluid" ng-controller="MainCtrl as vm">
 
             <h3>Ejercicio 13: $parsers y $formatters</h3>
 
-            Escribe con mayúsculas o minúsculas (el valor abajo lo verás siempre en minúsculas) <input changecase ng-model="data.name" />
+            Escribe con mayúsculas o minúsculas (el valor abajo lo verás siempre en minúsculas) <input changecase ng-model="vm.data.name" />
             <br>
             Pulsa estos botones para rellenar automáticamente el input (lo rellenarán en mayúsculas en los dos casos)
-            <input type="button" value="'tortuga'" ng-click="data.name='tortuga'"/>
-            <input type="button" value="'TORTUGA'" ng-click="data.name='TORTUGA'"/>
+            <input type="button" value="'tortuga'" ng-click="vm.data.name='tortuga'"/>
+            <input type="button" value="'TORTUGA'" ng-click="vm.data.name='TORTUGA'"/>
             <br>
-            <pre>El campo data.name del modelo contiene: {{data.name}}</pre>
+            <pre>El campo data.name del modelo contiene: {{vm.data.name}}</pre>
 
 
         </section>

@@ -23,11 +23,11 @@
             </nav>
         </header>
 
-        <section class="container-fluid" data--ng-controller="MainCtrl">
+        <section class="container-fluid" data--ng-controller="MainCtrl as vm">
 
             <h3>Ejercicio 12: validación de formularios III (validación personalizada)</h3>
 
-            <form name="myForm" ng-submit="doSomething()">
+            <form name="myForm" ng-submit="vm.doSomething()">
                 <label>Debes introducir la palabra <strong>tortuga</strong> (case insensitive)</label>
 
                 <!-- Asegurarnos de que incluimos:
@@ -37,7 +37,7 @@
 4. Atributo regex-validate-flags (optativo): en este caso, para el case insensitive
 -->
                 <input type="text" placeholder="Escribe tortuga"
-                       ng-model="test" name="test" regex-validate="\btortuga\b" regex-validate-flags="i"/>
+                       ng-model="vm.test" name="test" regex-validate="\btortuga\b" regex-validate-flags="i"/>
 
 
                 <!-- Mientras el campo no se valide a true, aquí veremos WRONG! en rojo.
