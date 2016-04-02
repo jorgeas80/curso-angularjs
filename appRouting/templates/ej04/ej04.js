@@ -3,9 +3,11 @@
     'use strict';
     
     // Esta funcion es el controlador que asociamos a la vista del ej04
-    function ej04Controller($scope) {
+    function ej04Controller() {
         
-        $scope.customers=[
+        var vm = this;
+
+        vm.customers=[
                 {id: 1, name: 'Jorge Arévalo', city: 'Madrid', 'fecha_alta': '2014-07-12', 'ultima_factura': 1550.5485363}, 
                 {id: 2, name: 'Elena Nieto del Bosque', city: 'Toledo', 'fecha_alta': '2010-01-23', 'ultima_factura': 1800.5435363}, 
                 {id: 3, name: 'Javier Ucto', city: 'Murcia', 'fecha_alta': '2015-12-02', 'ultima_factura': 2100.5435363}, 
@@ -15,9 +17,7 @@
     }
     
     // Cargamos la aplicacion AngularJS
-    var app = angular.module('ejerciciosApp');
-    
-    app.controller('ej04Controller', ej04Controller);
-    ej04Controller.$inject = ['$scope'];
-    
+    angular
+        .module('ejerciciosApp')
+        .controller('ej04Controller', ej04Controller);
 })();
