@@ -28,6 +28,7 @@
         //set up a $watch.
         // ESTO NO VA A FUNCIONAR.
         // AQUI LO EXPLICA: http://stackoverflow.com/a/24078893/593722
+        // AQUÍ TAMBIÉN: https://toddmotto.com/digging-into-angulars-controller-as-syntax/
         /*
         $scope.$watch('vm.bar', function (v){
             vm.baz = v + 'baz';

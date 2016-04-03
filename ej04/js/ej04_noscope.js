@@ -10,10 +10,17 @@
     // Esta funcion es el controlador que asociamos a la vista del ej04
     function ej04Controller() {
         
-        /** Es mejor evitar el uso de 'this' porque es una palabra clave 
-        * contextual (depende del contexto en el que se ejecute). Si lo usaramos 
-        * en una funcion dentro de un controlador, podria cambiar su contexto
-        **/
+        /** 
+         * Gracias a la sintaxis "controller as", podemos usar 'this'. Se
+         * explica bastante bien aquí: https://toddmotto.com/digging-into-angulars-controller-as-syntax/
+         * 
+         * Pero es mejor evitar el uso de 'this' porque es una palabra clave 
+         * contextual (depende del contexto en el que se ejecute). Si lo usaramos 
+         * en una funcion dentro de un controlador, podria cambiar su contexto
+         * Aquí lo explica: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
+         * 
+         * Ejemplo donde se ve el problema: 
+         **/
         var vm = this;
         
         vm.customers=[
