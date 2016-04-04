@@ -55,16 +55,23 @@
                 definimos aquí. Como hace ng-model.
                 También prestar atención a que ya no pasamos los parámetros con {{}}. 
                 Se cogen del controlador. -->
-                <yearly-data text="'Datos del año fiscal'" year="vm.configuration.year" quarter="vm.configuration.quarter"></yearly-data>
+                <ca-yearly-data text="'Datos del año fiscal'" year="vm.configuration.year" quarter="vm.configuration.quarter"></ca-yearly-data>
 
                
                 <p>El listado de clientes es</p>
 
                 <!-- Listado de clientes incluyendo nombre y ciudad, filtrando por el nombre introducido arriba, ordenados por fecha de alta descendente, con la ciudad en     
-mayúsculas y cantidad de factura redondeada a 2 decimales -->
+mayúsculas y cantidad de factura redondeada a 2 decimales -->                
+                <!--
                 <ul>
                     <li data-ng-repeat="cust in vm.customers | filter: filterText | orderBy: '-fecha_alta'">{{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €</li>
                 </ul>
+                -->
+                
+                <!-- Esto seria otra forma de hacerlo -->
+                <ca-customer data-ng-repeat="cust in vm.customers | filter: filterText | orderBy: '-fecha_alta'">
+                    {{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €
+                </ca-customer>
 
 
                 <!-- NOTA: Si cambiamos elementos del array, ng-repeat elimina todos los elementos del DOM y los

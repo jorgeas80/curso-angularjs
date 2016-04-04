@@ -22,6 +22,8 @@
 
         .directive("caYearlyData", yearlyDataDirective)
         .directive("caStatusServer", statusServerDirective)
+        //.directive("caStatusServer", statusServerDirective2)
+        .directive("caCustomer", customerDirective)
         .controller('ej10Controller', ej10Controller);
    
     ej10Controller.$inject = ['configData', 'customer'];
@@ -119,6 +121,8 @@
              **/
             link: function(scope, iElement, iAttrs, controller, transcludeFn) {
 
+                console.log('Funcion link');
+            
                 switch (iAttrs.color) {
                     case "rojo":
                         iElement.addClass("alert");
@@ -143,8 +147,86 @@
         return directiveDefinitionObject;
     };
 
+    // Otra manera de hacerlo, más verbosa
+    function statusServerDirective2() {
 
+        var directiveDefinitionObject = {
+            restrict: "E",
+            replace : true,
+            template: "<div>{{texto}}</div>",
+            scope: {
+                texto:"@"
+            },
+            
+            // En la función compile no hay scope aun
+            compile: function(iElement, iAttrs) {
+                
+                console.log("Funcion compile...");
+                
+                
+                return {
+                    
+                    // Ya hay scope, pero las directivas hijas no han sido aun revisadas
+                    pre: function(scope, iElement, iAttrs) {
+                        console.log("Funcion pre-link");
+                    },
+                    
+                    // Ya hay scope, y además las directivas hijas han sido revisadas
+                    post: function(scope, iElement, iAttrs) {
+                        console.log('Funcion post-link');
+            
+                        switch (iAttrs.color) {
+                            case "rojo":
+                                iElement.addClass("alert");
+                                iElement.addClass("alert-danger")
+                                break;
+                            case "verde":
+                                iElement.addClass("alert");
+                                iElement.addClass("alert-success")
+                                break;
+                            case "azul":
+                                iElement.addClass("alert");
+                                iElement.addClass("alert-info")
+                                break;
+                            default:
+                                break;
+                        }
 
+                    }
+                }
+            } 
+        }
+
+        return directiveDefinitionObject;
+    };
+
+    
+    function customerDirective($filter) {
+        var directiveDefinitionObject = {
+            restrict: "E",
+            transclude: true,
+            replace: true,
+            scope: {},
+            controllerAs: 'ctrl',
+            bindToController: {
+                customers: "=",
+            },
+            controller: function() {
+                var dvm = this;
+            },
+            template: [
+                "<div ng-transclude class='list-group-item'></div>"
+            ].join(''),
+            link: function(scope, el, attrs, ctrl, transclude) {
+                console.log(el);
+            }
+            
+        };
+        
+        return directiveDefinitionObject;
+    }
+    
+    
     // Esta funcion es el controlador que asociamos a la vista del ej06
     function ej10Controller(configData, customer) {
         
