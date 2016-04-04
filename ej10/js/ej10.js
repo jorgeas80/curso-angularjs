@@ -22,7 +22,8 @@
 
         .directive("caYearlyData", yearlyDataDirective)
         .directive("caStatusServer", statusServerDirective)
-        //.directive("caStatusServer", statusServerDirective2)
+        .directive("caStatusServer2", statusServerDirective2)
+        .directive("caStatusServer3", statusServerDirective3)
         .directive("caCustomer", customerDirective)
         .controller('ej10Controller', ej10Controller);
    
@@ -123,18 +124,18 @@
 
                 console.log('Funcion link');
             
-                switch (iAttrs.color) {
-                    case "rojo":
+                switch (iAttrs.estado) {
+                    case "error":
                         iElement.addClass("alert");
                         iElement.addClass("alert-danger")
                         break;
-                    case "verde":
+                    case "ok":
                         iElement.addClass("alert");
                         iElement.addClass("alert-success")
                         break;
-                    case "azul":
+                    case "warning":
                         iElement.addClass("alert");
-                        iElement.addClass("alert-info")
+                        iElement.addClass("alert-warning")
                         break;
                     default:
                         break;
@@ -175,18 +176,18 @@
                     post: function(scope, iElement, iAttrs) {
                         console.log('Funcion post-link');
             
-                        switch (iAttrs.color) {
-                            case "rojo":
+                        switch (iAttrs.estado) {
+                            case "error":
                                 iElement.addClass("alert");
                                 iElement.addClass("alert-danger")
                                 break;
-                            case "verde":
+                            case "ok":
                                 iElement.addClass("alert");
                                 iElement.addClass("alert-success")
                                 break;
-                            case "azul":
+                            case "warning":
                                 iElement.addClass("alert");
-                                iElement.addClass("alert-info")
+                                iElement.addClass("alert-warning")
                                 break;
                             default:
                                 break;
@@ -199,6 +200,47 @@
 
         return directiveDefinitionObject;
     };
+    
+    
+    function statusServerDirective3() {
+
+        var directiveDefinitionObject = {
+            restrict: "E",
+            replace : true,
+            transclude: true,   // Usamos transclusion aqui
+            template: "<div ng-transclude></div>", // Esto cogerá lo que haya dentro de la directiva automáticamente
+            scope: {
+            },
+            
+            // En la función link, modificaremos el DOM de la directiva, para añadirle clases
+            link: function(scope, iElement, iAttrs, controller, transcludeFn) {
+
+                console.log('Funcion link');
+            
+                switch (iAttrs.estado) {
+                    case "error":
+                        iElement.addClass("alert");
+                        iElement.addClass("alert-danger")
+                        break;
+                    case "ok":
+                        iElement.addClass("alert");
+                        iElement.addClass("alert-success")
+                        break;
+                    case "warning":
+                        iElement.addClass("alert");
+                        iElement.addClass("alert-warning")
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        
+        }
+
+        return directiveDefinitionObject;
+    };
+    
 
     
     function customerDirective($filter) {

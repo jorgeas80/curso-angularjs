@@ -42,9 +42,10 @@
 
             <div>
                
-                <!-- Añadimos estas directivas para mostrar estado de servidores -->
-                <ca-status-server color="verde" texto="Servidor primario"></ca-status-server>
-                <ca-status-server color="rojo" texto="Servidor de backup"></ca-status-server>
+                <!-- Añadimos estas directivas para mostrar estado de servidores. La última usa transclusion -->
+                <ca-status-server estado="ok" texto="Servidor primario"></ca-status-server>
+                <ca-status-server2 estado="warning" texto="Servidor secundario"></ca-status-server2>
+                <ca-status-server3 estado="error">Servidor de backup</ca-status-server3>
                                 
                 <!-- Ahora le estamos pasando argumentos a la directiva. Ojo a las comillas simples dentro de text. Dado que vamos a crear un enlace bidireccional entre 
                 controlador y directiva, las
