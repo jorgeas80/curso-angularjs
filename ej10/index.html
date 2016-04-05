@@ -70,9 +70,9 @@ mayúsculas y cantidad de factura redondeada a 2 decimales -->
                 -->
                 
                 <!-- Esto seria otra forma de hacerlo -->
-                <ca-customer data-ng-repeat="cust in vm.customers | filter: filterText | orderBy: '-fecha_alta'">
-                    {{cust.id}}.- {{cust.name}} ({{cust.city | uppercase}}) - Desde {{cust.fecha_alta}} - Última factura: {{cust.ultima_factura | number:2}} €
-                </ca-customer>
+                <div data-ng-repeat="cust in vm.customers | filter: filterText | orderBy: '-fecha_alta'">
+                    <ca-customer cust="cust">FOO</ca-customer>
+                </div>
 
 
                 <!-- NOTA: Si cambiamos elementos del array, ng-repeat elimina todos los elementos del DOM y los

@@ -246,18 +246,21 @@
     function customerDirective($filter) {
         var directiveDefinitionObject = {
             restrict: "E",
-            transclude: true,
             replace: true,
+            transclude: true,
             scope: {},
             controllerAs: 'ctrl',
             bindToController: {
-                customers: "=",
+                cust: "=",
             },
-            controller: function() {
-                var dvm = this;
-            },
+            controller: function() {},
             template: [
-                "<div ng-transclude class='list-group-item'></div>"
+                "<div class='list-group-item'>",
+                    "<div><strong>{{ctrl.cust.id}}.-{{ctrl.cust.name}}</strong></div>",
+                    "<div>{{ctrl.cust.city | uppercase}} - Desde {{ctrl.cust.fecha_alta}} - Última factura:",
+                    "{{ctrl.cust.ultima_factura | number:2}} €</div>",
+                    "<div ng-transclude></div>",
+                "</div>"
             ].join(''),
             link: function(scope, el, attrs, ctrl, transclude) {
                 console.log(el);
