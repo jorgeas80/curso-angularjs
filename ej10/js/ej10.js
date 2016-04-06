@@ -253,6 +253,9 @@
             bindToController: {
                 cust: "=",
             },
+            
+            // Esto de tener que definir un controlador vacío es feo. Buena oportunidad para
+            // meter component. Aqui lo explica a la perfeccion: https://toddmotto.com/stateless-angular-components/
             controller: function() {},
             template: [
                 "<div class='list-group-item'>",
