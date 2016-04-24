@@ -19,7 +19,7 @@
          * en una funcion dentro de un controlador, podria cambiar su contexto
          * Aquí lo explica: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
          * 
-         * Ejemplo donde se ve el problema: 
+         * Ejemplo donde se ve el problema: http://stackoverflow.com/a/25405706/593722
          **/
         var vm = this;
         
