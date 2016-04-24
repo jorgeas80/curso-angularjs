@@ -42,7 +42,7 @@
         });
 
         $scope.getNombreCompleto=function() {
-            return $scope.persona.nombre + " " + $scope.persona.ape1
+            return $scope.persona.nombre + " " + $scope.persona.apel
         }
 
         $scope.change2 = function() {
@@ -100,11 +100,11 @@
             alert("Nuevo nombre:" + newValues[0]  + " y nuevo apellido:" + newValues[1]);
         });
 
-        $scope.change4 = function() {
+        $scope.change5 = function() {
             $scope.persona2.nombre="Raul";
         }
 
-        $scope.change5 = function() {
+        $scope.change6 = function() {
             $scope.persona2.apellido="Perez";
         } 
 
