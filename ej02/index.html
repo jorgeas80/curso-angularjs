@@ -47,21 +47,9 @@
                 <!-- Ejemplo de uso de operadores lógicos en las expresiones -->
                 <p>La lista tiene {{names.length > 4 && 'más de 4 nombres' || '4 nombres o menos'}}</p>
 
-                <!-- Ejemplo de cómo se haría con jQuery lo mismo del párrafo superior -->    
+                <!-- Aquí ponemos lo mismo hecho con jQuery (ver codigo js de abajo) -->
                 <p id="parrafo-jquery"></p>
-                <script>
 
-                    var names = ['Jorge', 'Carlos', 'Victor', 'Jose'];
-
-                    if (names.length > 4) {
-                        $("#parrafo-jquery").text('La lista tiene más de 4 nombres');
-                    }
-
-                    else {
-                        $("#parrafo-jquery").text('La lista tiene 4 nombres o menos');
-                    }
-
-                </script>
             </div>
 
         </section>
@@ -75,6 +63,22 @@
         <script src="js/vendor/jquery-1.12.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/angular.js"></script>
-        <script src="resueltos/ej04/ej04.js"></script>
+        <script>
+                    
+            function show() {
+                var names = ['Jorge', 'Carlos', 'Victor', 'Jose'];
+
+                if (names.length > 4) {
+                    $("#parrafo-jquery").text('La lista tiene más de 4 nombres');
+                }
+
+                else {
+                    $("#parrafo-jquery").text('La lista tiene 4 nombres o menos');
+                }
+            }
+
+            show();
+        </script>
+
     </body>
 </html>
