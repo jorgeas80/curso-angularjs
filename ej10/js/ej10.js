@@ -2,6 +2,10 @@
 (function() {
     'use strict';
     
+    // Definimos arriba la variable vacia porque la vamos a referenciar ahora. Al final del
+    // fichero se le asigna un valor
+    var customerComponent = {};
+    
     // Cargamos la aplicacion AngularJS
     angular
         .module('ejerciciosApp', [])
@@ -24,7 +28,11 @@
         .directive("caStatusServer", statusServerDirective)
         .directive("caStatusServer2", statusServerDirective2)
         .directive("caStatusServer3", statusServerDirective3)
+    
         .directive("caCustomer", customerDirective)
+        
+        // Comentar la línea de arriba y descomentar esta para ver como se define un component
+        //.component("caCustomer", customerComponent)
         .controller('ej10Controller', ej10Controller);
    
     ej10Controller.$inject = ['configData', 'customer'];
@@ -242,8 +250,10 @@
     };
     
 
-    
-    function customerDirective($filter) {
+    // Aquí definimos la directiva como un "stateless object". Es una idea que también usa react
+    // Nuestra directiva va a ser un objeto aislado al que le pasamos datos para que los
+    // renderice. De manera que la directiva tendrá su propio controlador y su propio scope.
+    function customerDirective() {
         var directiveDefinitionObject = {
             restrict: "E",
             replace: true,
@@ -273,6 +283,28 @@
         
         return directiveDefinitionObject;
     }
+    
+    // Esta es la alternativa a la sintáxis verbosa de controller as (ver customerDirective)
+    // para obtener un stateless object mediante una directiva (scope aislado, su propio
+    // controlador al que pasarle datos)
+    customerComponent = {
+        
+        // scope y bindToController se transforman en bindings
+        bindings: {
+            cust: "="
+        },
+        
+        // controller y controllerAs se simplifican y por defecto podemos usar $ctrl 
+        // dentro de nuestra template, sin necesidad de declarar nada más
+        template: [
+                "<div class='list-group-item'>",
+                    "<div><strong>{{$ctrl.cust.id}}.-{{$ctrl.cust.name}}</strong></div>",
+                    "<div>{{$ctrl.cust.city | uppercase}} - Desde {{$ctrl.cust.fecha_alta}} - Última factura:",
+                    "{{$ctrl.cust.ultima_factura | number:2}} €</div>",
+                    "<div ng-transclude></div>",
+                "</div>"
+            ].join(''),
+    };
     
     
     // Esta funcion es el controlador que asociamos a la vista del ej06
