@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app="ui.bootstrap.demo">
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.1.js"></script>
+    <script src="example.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+<div ng-controller="DateParserDemoCtrl">
+  <h4>Formatting codes playground</h4>
+  <p class="form-group">
+    <label>Define your format</label>
+    <input type="text" ng-model="format" class="form-control">
+  </p>
+  <p class="form-group">
+    <label>Result</label>
+    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" />
+  </p>
+</div>
+  </body>
+</html>

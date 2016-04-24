@@ -1,0 +1,42 @@
+body {
+    padding-top: 50px;
+}
+
+.panel-footer input {
+    width: 100%;
+}
+
+.panel-body {
+    background-color: #f5f5f5;
+    padding: 0;
+}
+
+.nick {
+    background-color: white;
+    padding: 10px 0 10px 15px;
+}
+
+.nick label {
+    color: #999;
+    text-transform: uppercase;
+}
+
+.nick input {
+    padding-left: 100px;
+    box-shadow: none;
+    border: 1px solid #fff;
+    font-size: 18px;
+}
+
+.chat-window {
+}
+
+.chat-window ul {
+    list-style: none;
+    font-size: 1.2em;
+    padding: 10px 10px 10px 15px;
+}
+
+.chat-window ul .example-chat-username{
+    margin-right: 10px;
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html ng-app="ui.bootstrap.demo">
+  <head>
+    <meta charset="UTF-8">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.1.js"></script>
+    <script src="example.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+<div ng-controller="AlertDemoCtrl">
+  <script type="text/ng-template" id="alert.html">
+    <div class="alert" style="background-color:#fa39c3;color:white" role="alert" close="closeAlert(0)">
+      <div ng-transclude></div>
+    </div>
+  </script>
+
+  <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+  <uib-alert template-url="alert.html">¡Alerta rosa!</uib-alert>
+  <button type="button" class='btn btn-default' ng-click="addAlert()">Añadir alerta</button>
+</div>
+  </body>
+</html>
