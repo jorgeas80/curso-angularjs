@@ -42,19 +42,9 @@
 
             <div>
                 
-                <!-- Ahora le estamos pasando argumentos a la directiva. Ojo a las comillas simples dentro de text. Dado que vamos a crear un enlace bidireccional entre 
-                controlador y directiva, las
-                variables tienen que existir en
-                ambos lados. La variable text no
-                existe en el controlador (ver
-                ej_09.js), de manera que la 
-                definimos aquí. Como hace ng-model.
-                También prestar atención a que ya no pasamos los parámetros con {{}}. 
-                Se cogen del controlador. -->
-                <ca-yearly-data text="'Datos del año fiscal'" year="vm.configuration.year" quarter="vm.configuration.quarter" change="vm.changeYear()"></ca-yearly-data>
-                
-                <!-- Ejemplo de cómo cambiaría el atributo year en la directiva en el fichero ej09.js,
-                 comentado -->
+                <!-- El parámetro change esta diciendo que "change" será una función disponible en nuestra
+                directiva, que está definida en el controlador y que tiene un argumento 'year'. -->
+                <ca-yearly-data text="'Datos del año fiscal'" year="vm.configuration.year" quarter="vm.configuration.quarter" change="vm.changeYear(year)"></ca-yearly-data>
                 
                 <!-- Esto es solo un chivato para ver que el scope de la directiva y el del controlador
                 están conectados. Cuando cambiemos "year" en el scope de la directiva, esto va a cambiar -->

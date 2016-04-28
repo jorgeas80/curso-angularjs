@@ -65,9 +65,13 @@
             replace : true,
 
             /**
-             * Aquí estamos pasandole a la directiva argumentos, para que 
-             * pueda crear su propio scope a partir de elementos copiados
-             * del scope padre. Además, estamos sincronizando los elementos
+             * Como change apunta a una función del controlador, la podemos llamar. Ojo a cómo se pasan
+             * argumentos a esa función, usando las llaves. Le estamos pasando un argumento estático (2015),
+             * pero podríamos pasarle también una variable. 
+             * Tal y como está, la llamada a 'change' es equivalente a definir algo así dentro del template de
+             * la directiva:
+             * <strong>Año: </strong>
+             * <input type='text' ng-model='year'> (esto en lugar del button)
              **/
             template: [
                 "<span>",
@@ -75,7 +79,7 @@
                     "<ul>",
                         "<li>",
                             "<strong>Año: </strong> {{year}}", 
-                            "<button ng-click='change()'>Cambiar valor de scope.year de la directiva</button>",
+                            "<button ng-click='change({year: 2015})'>Cambiar valor de scope.year de la directiva</button>",
                         "</li>",
                         "<li>",
                             "<strong>Trimestre: </strong> {{quarter}}",
@@ -88,7 +92,10 @@
                 year: "=",
                 quarter: "=",
                 text: "=",
-                change: "&"
+                
+                // En la template de nuestra directiva podemos usar "change" y se mapea automaticamente con lo
+                // que pasemos en el atributo "change" del HTML original de nuestra directiva
+                change: "&" 
             }
         }
 
@@ -104,8 +111,8 @@
         vm.customers = customer.getCustomers();
         vm.configuration = configData;
         
-        vm.changeYear = function() {
-            vm.configuration.year = 2015;
+        vm.changeYear = function(year) {
+            vm.configuration.year = year;
         }
     }
     

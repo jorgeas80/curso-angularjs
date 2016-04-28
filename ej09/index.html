@@ -42,15 +42,8 @@
 
             <div>
                 
-                <!-- Ahora le estamos pasando argumentos a la directiva. Ojo a las comillas simples dentro de text. Dado que vamos a crear un enlace bidireccional entre 
-                controlador y directiva, las
-                variables tienen que existir en
-                ambos lados. La variable text no
-                existe en el controlador (ver
-                ej_09.js), de manera que la 
-                definimos aquí. Como hace ng-model.
-                También prestar atención a que ya no pasamos los parámetros con {{}}. 
-                Se cogen del controlador. -->
+                <!-- Ahora le estamos pasando argumentos a la directiva. Ojo a las comillas simples dentro de text. Dado que vamos a crear un enlace bidireccional entre controlador y directiva, las variables tienen que existir en ambos lados. La variable text no existe en el controlador (ver ej_09.js), de manera que la 
+                definimos aquí. Como hace ng-model. También prestar atención a que ya no pasamos los parámetros con {{}}. Se cogen del controlador. -->
                 <ca-yearly-data text="'Datos del año fiscal'" year="vm.configuration.year" quarter="vm.configuration.quarter"></ca-yearly-data>
                 
                 <!-- Ejemplo de cómo cambiaría el atributo year en la directiva en el fichero ej09.js,

@@ -1,41 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="photoApp">
 
-<head lang="en">
-  <meta charset="utf-8">
-  <title>Photo App</title>
-  <link rel="stylesheet" href="dark-html-theme.css" type="text/css"/>
-  <link rel="stylesheet" href="photo-app.css" type="text/css"/>
-</head>
+    <head lang="en">
+        <meta charset="utf-8">
+        <title>Photo App</title>
+        <link rel="stylesheet" href="css/dark-html-theme.css" type="text/css"/>
+        <link rel="stylesheet" href="css/photo-app.css" type="text/css"/>
+    </head>
 
-<body ng-app="photoApp">
+    <body>
 
-  <div ng-controller="MainController">
+        <div ng-cloak ng-controller="PhotoSearchController as vm">
 
-    <form class="search-field" ng-submit="submitSearch()">
-      <input type="text" placeholder="enter 'water' or 'mountains'" ng-model="searchKeyword">
-      <input type="submit" value="Find">
-      <span class="search-message">photos of {{searchKeyword}}</span>
-    </form>
+            <form class="search-field" ng-submit="vm.submitSearch()">
+                <input type="text" placeholder="Introduce 'water' o 'mountains'" ng-model="vm.search.keyword">
+                <input type="submit" value="Find">
+                <span class="search-message" ng-show="vm.search.keyword">photos of {{vm.search.keyword}}</span>
+            </form>
 
-    <div class="size-controls btn-group">
-      <button ng-disabled="thumbSize == 'small'" ng-click="setThumbSize('small')">Small</button>
-      <button ng-disabled="thumbSize == 'large'" ng-click="setThumbSize('large')">Large</button>
-    </div>
+            <div class="size-controls btn-group">
+                <button ng-disabled="vm.thumbSize.size == 'small'" ng-click="vm.setThumbSize('small')">Small</button>
+                <button ng-disabled="vm.thumbSize.size == 'large'" ng-click="vm.setThumbSize('large')">Large</button>
+            </div>
+            
+            
+            <ul class="results-list" ng-class="vm.thumbSize.size + '-thumbs'">
+                <li ng-repeat="photo in vm.photos">
+                    <img ng-src="{{photo.thumbUrl}}">
+                    <p class="title">{{photo.title}}</p>
+                </li>
+            </ul>
 
-    <ul class="results-list" ng-class="thumbSize + '-thumbs'">
-      <li ng-repeat="photo in photos">
-        <img ng-src="{{photo.thumbUrl}}"/>
-        <p class="title">{{photo.title}}</p>
-      </li>
-    </ul>
+        </div>
 
-  </div>
-
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  <script src="photoApp.js"></script>
-  <script src="photoSearchService.js"></script>
-  <script src="MainController.js"></script>
-</body>
+        <script src="https://code.angularjs.org/1.5.5/angular.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/app.js"></script>
+    </body>
 
 </html>
