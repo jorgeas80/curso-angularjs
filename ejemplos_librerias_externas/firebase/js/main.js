@@ -8,7 +8,7 @@ myApp.controller("FirebaseController", ["$scope", "$firebaseArray", function($sc
     // Creamos variable para almacenar la url a una instancia de prueba de Firebase. Si falla, habrá que crear una
     // Podemos usar esta:
     //var ref = new Firebase("https://blistering-fire-2438.firebaseio.com/");
-    var ref = new Firebase("https://https://cursoangularjs.firebaseio.com//");
+    var ref = new Firebase("https://cursoangularjs.firebaseio.com/");
     
     // Si falla, se puede usar esta de demo
     //var ref = new Firebase("https://c79l3jds2ao.firebaseio-demo.com/");
