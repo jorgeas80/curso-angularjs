@@ -19,6 +19,7 @@ describe('httpBasedService', function () {
   
   // make sure no expectations were missed in your tests.
   // (e.g. expectGET or expectPOST)
+  // This is to verify that all HTTP requests were made and there are none to be flushed
   afterEach(function() {
     httpBackend.verifyNoOutstandingExpectation();
     httpBackend.verifyNoOutstandingRequest();

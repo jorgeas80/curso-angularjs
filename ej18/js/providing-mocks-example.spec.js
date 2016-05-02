@@ -21,6 +21,15 @@ describe('testing some service', function (){
     inject(function(_myService_) {
       myService = _myService_;
     });
+
+      /**
+       * Other way to do it, avoiding the underscore syntax
+       */
+      /*
+      inject(function($injector) {
+          myService = $injector.get('myService');
+      });
+      */
   });
   
   it('should call foo.bar on myService.test passing through parameters.', function (){

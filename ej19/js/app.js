@@ -8,6 +8,9 @@
 
             return function(scope, elem, attrs) {
                 elem.bind('click', function(){
+
+                    // $eval is evaluating angular expressions. Not just plain js
+                    // Check http://stackoverflow.com/a/15671573/593722
                     elem.text(scope.$eval(attrs.sampleOne));
                 });
             };

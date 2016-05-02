@@ -3,6 +3,7 @@ angular.module('myApp').factory('foo', function () {
   return {
     bar: function(msg) {
       // do something here.
+      console.log(msg);
     }
   };
 });
