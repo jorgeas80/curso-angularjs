@@ -28,12 +28,13 @@ describe('Testing a controller', function() {
     inject(function($rootScope, $controller, $q, _$timeout_) {
       // create a scope object for us to use.
       $scope = $rootScope.$new();
-  
+
       // set up the returns for our someServiceMock
       // $q.when('weee') creates a resolved promise to "weee".
       // this is important since our service is async and returns
       // a promise.
       someServiceMock.someAsyncCall.andReturn($q.when('weee'));
+        // BE CAREFUL: Jasmine 2 replaced .andReturn with .and.returnValue
       
       // assign $timeout to a scoped variable so we can use 
       // $timeout.flush() later. Notice the _underscore_ trick
