@@ -34,6 +34,7 @@
                     expect(resolvedValue).toBeUndefined();
 
                     // Propagate promise resolution to 'then' functions using $apply().
+                    // Explanation of the use of $apply here: http://stackoverflow.com/a/23562049/593722
                     $rootScope.$apply();
                     expect(resolvedValue).toEqual(123);
                 }));
