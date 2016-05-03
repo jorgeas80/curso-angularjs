@@ -1,11 +1,6 @@
-require([
-    'angular'
-], function(angular) {
-    angular
-        .module('app', [])
-            .controller('mainController', function ($scope) {
-            $scope.message = 'Hola mundo';
-        });
-    
-    angular.bootstrap(document, ['app']);
+/*global define*/
+'use strict';
+
+define(['angular'], function (angular) {
+	return angular.module('app', []);
 });
