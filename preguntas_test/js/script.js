@@ -242,7 +242,7 @@ function TestController($scope) {
         },
         {
             id : 21,
-            text:'Si quiero automatizar ciertas tareas de mi aplicación AngularJS, como minimificación, testing, etc:',
+            text:'Si quiero automatizar ciertas tareas de mi aplicación AngularJS, como minificación, testing, etc:',
             validAnswer : 2,
             userAnswer : null,
             status : '',
