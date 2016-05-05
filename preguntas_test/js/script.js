@@ -117,7 +117,7 @@ function TestController($scope) {
             answers: [
                 {id : 1, text : 'Trabajar con objetos en vez de variables sueltas en el $scope, para evitar problemas en $scope heredados'},
                 {id : 2, text : 'Escribir todas las variables en mayúsculas'},
-                {id : 3, text : 'Hacer llamadas HTTP desde los controladores'},
+                {id : 3, text : 'Manipular el DOM directamente desde un controlador'},
             ]
         },
         {
