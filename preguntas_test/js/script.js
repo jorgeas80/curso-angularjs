@@ -223,7 +223,7 @@ function TestController($scope) {
             userAnswer : null,
             status : '',
             answers: [
-                {id : 1, text : 'Podemos crear mocks de objetos e inyectarlos en nuestros tests con $provide. Así no es necesario que hagamos las llamadas reales, que pueden ser muy pesadas.'},
+                {id : 1, text : 'Podemos crear mocks de objetos e inyectarlos en nuestros tests. Así no es necesario que hagamos las llamadas reales, que pueden ser muy pesadas.'},
                 {id : 2, text : 'Jasmine proporciona objetos especiales rastreables, que nos dicen si alguno de sus métodos ha sido llamado, con cuántos argumentos, etc'},
                 {id : 3, text : 'Las dos respuestas anteriores son válidas.'},
             ]
