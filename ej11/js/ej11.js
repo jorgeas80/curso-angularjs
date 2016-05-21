@@ -5,20 +5,12 @@
     // Cargamos la aplicacion AngularJS
     angular
         .module('ejerciciosApp', [])
-        .provider('customer', customerPvd)
         .constant('configData', {
             year: 2016,
             quarter: 'Q1'
         })
 
-        .config(function(configData, customerProvider) {
-            console.log("DEBUG - Año: " + configData.year);
-            console.log("DEBUG - Trimestre: " + configData.quarter); 
-
-            // Podemos usar aquí el provider para configurarlo. Por lo demás,
-            // funciona como un factory
-            customerProvider.initCustomers();
-        })
+        .factory('customerFactory', customerFactory)
 
         .directive("caYearlyData", yearlyDataDirective)
         .directive("caStatusServer", statusServerDirective)
@@ -27,42 +19,37 @@
         .controller('ej11Controller', ej11Controller);
    
     dateFormatFilter.$inject = ['$log', '$filter'];
-    ej11Controller.$inject = ['configData', 'customer'];
+    ej11Controller.$inject = ['configData', 'customerFactory'];
 
 
-    function customerPvd() {
 
-        // Esto se ejecutaría antes de iniciar la app. Podemos configurar el provider.
-        this.initCustomers = function() {
-            console.log("Iniciando servicio de obtención de clientes...");
-        };
+    function customerFactory() {
+        var f = {};
 
-        // Este método ha de estar forzosamente. Es lo que el provider va a exponer. 
-        // Lo que hay en este método es lo mismo que había en el factory del 
-        // ejemplo ej06_factory.js
-        this.$get = function() {
-            var f = {};
+        /** Aquí estamos ocultando el objeto customers (no lo vamos a devolver).
+         * De esta forma, estamos de alguna manera definiendo atributos
+         * "privados". Con los service se puede conseguir también, pero esta
+         * manera es más clara en cuanto a sintáxis
+         **/
+        var customers = [
+            {id: 1, name: 'Jorge Arévalo', city: 'Madrid', 'fecha_alta': '2014-07-12', 'ultima_factura': 1550.5485363},
+            {id: 2, name: 'Elena Nieto del Bosque', city: 'Toledo', 'fecha_alta': '2010-01-23', 'ultima_factura': 1800.5435363},
+            {id: 3, name: 'Javier Ucto', city: 'Murcia', 'fecha_alta': '2015-12-02', 'ultima_factura': 2100.5435363},
+            {id: 4, name: 'Jose Villanas', city: 'Córdoba', 'fecha_alta': '2006-04-15', 'ultima_factura': 988.5435363},
+            {id: 5, name: 'Marta Burete', city: 'Gijón', 'fecha_alta': '2009-08-15', 'ultima_factura': 1250.5435363}
+        ];
 
-            var customers = [
-                {id: 1, name: 'Jorge Arévalo', city: 'Madrid', 'fecha_alta': '2014-07-12', 'ultima_factura': 1550.5485363}, 
-                {id: 2, name: 'Elena Nieto del Bosque', city: 'Toledo', 'fecha_alta': '2010-01-23', 'ultima_factura': 1800.5435363}, 
-                {id: 3, name: 'Javier Ucto', city: 'Murcia', 'fecha_alta': '2015-12-02', 'ultima_factura': 2100.5435363}, 
-                {id: 4, name: 'Jose Villanas', city: 'Córdoba', 'fecha_alta': '2006-04-15', 'ultima_factura': 988.5435363}, 
-                {id: 5, name: 'Marta Burete', city: 'Gijón', 'fecha_alta': '2009-08-15', 'ultima_factura': 1250.5435363}
-            ];
-
-            f.getCustomers = function(customer) {
-                return customers;
-            }
-
-            f.addCustomer = function(customer) {
-                customers.push(customer);
-            }
-
-            return f;
+        f.getCustomers = function(customer) {
+            return customers;
         }
+
+        f.addCustomer = function(customer) {
+            customers.push(customer);
+        }
+
+        return f;
     }
-    
+
     function yearlyDataDirective() {
         var directiveDefinitionObject = {
             restrict: "E",
@@ -164,12 +151,12 @@
 
 
     // Esta funcion es el controlador que asociamos a la vista del ej06
-    function ej11Controller(configData, customer) {
+    function ej11Controller(configData, customerFactory) {
         
         var vm = this;
 
         // Aquí ya estamos usando el provider como si fuera un factory
-        vm.customers = customer.getCustomers();
+        vm.customers = customerFactory.getCustomers();
         vm.configuration = configData;
     }
 
