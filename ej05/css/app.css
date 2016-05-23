@@ -1,3 +1,23 @@
 footer p{
     margin: 1em 0;
 }
+
+#parent {
+    background-color: blue;
+}
+
+#sib1 {
+    background-color: aqua;
+}
+
+#sib2 {
+    background-color: aqua;
+}
+
+#child {
+    background-color: red;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}

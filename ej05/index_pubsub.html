@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="ejerciciosApp">
+    <head>
+        <title>Ejercicios AngularJS</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    </head>
+    <body>
+
+        <header>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">AngularJS</a>
+                </div>
+            </nav>
+        </header>
+
+        <section class="container-fluid">
+
+            <div ng-controller="ParentCtrl as parent" id="parent">
+                <h3>ParentCtrl</h3>
+                <div ng-controller="SiblingOneCtrl as sib1" id="sib1">
+                    <h3>SiblingOneCtrl</h3>
+                </div>
+                <div ng-controller="SiblingTwoCtrl as sib2" id="sib2">
+                    <h3>SiblingTwoCtrl</h3>
+                    <ul>
+                        <li ng-cloak ng-repeat="msg in sib2.messages track by $index">{{ msg }}</li>
+                    </ul>
+                    <div ng-controller="ChildCtrl as child" id="child">
+                        <h3>ChildCtrl</h3>
+                        <button ng-click="child.emitFromScope()">$scope.$emit</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+        <footer class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container-fluid">
+                <p class="text-muted">Curso AngularJS</p>
+            </div>
+        </footer>
+
+        <script src="js/vendor/jquery-1.12.1.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.js"></script>
+        <script src="js/ej05_pubsub.js"></script>
+    </body>
+</html>
