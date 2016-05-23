@@ -35,6 +35,8 @@
                 </ul>
                 <div ng-controller="SiblingOneCtrl as sib1" id="sib1">
                     <h3>SiblingOneCtrl</h3>
+                    <button ng-click="sib1.emitFromRootScope()">$rootScope.$emit</button>
+                    <button ng-click="sib1.broadcastFromRootScope()">$rootScope.$broadcast</button>
                     <button ng-click="sib1.clearMsg()">Borrar mensajes</button>
                     <ul>
                         <li ng-cloak ng-repeat="msg in sib1.messages track by $index">{{ msg }}</li>
