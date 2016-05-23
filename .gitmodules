@@ -1,0 +1,3 @@
+[submodule "plantilla"]
+	path = plantilla
+	url = git@github.com:jorgeas80/angularjs1.x-basic-template.git
