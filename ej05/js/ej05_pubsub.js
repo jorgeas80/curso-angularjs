@@ -6,12 +6,22 @@
 
         var vm = this;
 
-        var messages = [];
+        vm.messages = [];
+
+        // Para borrar los mensajes
+        vm.clearMsg = function() {
+            vm.messages = [];
+        };
 
         // Emitimos hacia arriba
         vm.emitFromScope = function() {
             $scope.$emit('ChildCtrl:scope:emit', '$scope.$emit from ChildCtrl');
         };
+
+        // Escuchamos lo que nos viene del div padre
+        $scope.$on('ParentCtrl:scope:broadcast', function(event, data) {
+            vm.messages.push(data);
+        });
         
     }
 
@@ -21,8 +31,18 @@
         // Para guardar mensajes
         vm.messages = [];
 
-        // Escuchamos lo que emite nuestro nieto
+        // Para borrar los mensajes
+        vm.clearMsg = function() {
+            vm.messages = [];
+        };
+
+        // Como ChildCtrl no es descendiente directo nuestro y emite a través de $scope, NO lo escucharemos a pesar de estar suscritos
         $scope.$on('ChildCtrl:scope:emit', function(event, data) {
+            vm.messages.push(data);
+        });
+
+        // Escuchamos lo que nos viene del div padre
+        $scope.$on('ParentCtrl:scope:broadcast', function(event, data) {
             vm.messages.push(data);
         });
     }
@@ -34,12 +54,20 @@
         // Para guardar mensajes
         vm.messages = [];
 
+        // Para borrar los mensajes
+        vm.clearMsg = function() {
+            vm.messages = [];
+        };
+
         // Escuchamos lo que emite nuestro hijo
         $scope.$on('ChildCtrl:scope:emit', function(event, data) {
            vm.messages.push(data);
         });
 
-
+        // Escuchamos lo que nos viene del div padre
+        $scope.$on('ParentCtrl:scope:broadcast', function(event, data) {
+            vm.messages.push(data);
+        });
     }
 
     function ParentCtrl($scope) {
@@ -48,7 +76,16 @@
         // Para guardar mensajes
         vm.messages = [];
 
-        // Como ChildCtrl no es descendiente directo nuestro y emite a través de $scope, NO lo escucharemos a pesar de estar suscritos
+        // Para borrar los mensajes
+        vm.clearMsg = function() {
+            vm.messages = [];
+        };
+
+        vm.broadcastFromScope = function() {
+            $scope.$broadcast('ParentCtrl:scope:broadcast', '$scope.$broadcast from ParentCtrl');
+        };
+
+        // Escuchamos lo que emite nuestro nieto
         $scope.$on('ChildCtrl:scope:emit', function(event, data) {
             vm.messages.push(data);
         });
