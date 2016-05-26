@@ -1,58 +1,57 @@
-// Envolvemos el componente AngularJS en una IIFE, para eliminar las variables del scope global
-(function() {
 
-    // Usamos modo estricto (nuevo in ECMA5): http://www.w3schools.com/js/js_strict.asp
-    'use strict';
+angular
+    .module('app', [])
+    .directive('tab', tab)
+    .directive('tabs', tabs);
 
-    // Cargamos la aplicacion AngularJS
-    angular
-        .module('app', [])
-        .directive('caPanel', caPanel)
-        .directive('caTab', caTab);
+function tab() {
 
+    var f = {};
 
-    function caPanel() {
-        var f = {};
-
-        f.restrict = "E";
-        f.templateUrl = "partials/panel.html";
-        f.replace = true;
-        f.transclude = true;
-        f.scope = {
-            title: "@"
+    f.restrict= 'E';
+    f.scope= {
+        label: '@'
+    };
+    f.require= '^tabs';
+    f.transclude= true;
+    f.templateUrl= "partials/tab.html";
+    f.link= function ($scope, $element, $attrs, $ctrl) {
+        $scope.tab = {
+            label: $scope.label,
+            selected: false
         };
-        /*
-        f.controller = function($scope) {
-            $scope.tabs = [
-                {
-                    content: "Contenido tab 1"
-                },
-                {
-                    content: "Contenido tab 2"
-                },
-                
-            ];
+        $ctrl.addTab($scope.tab);
+    };
 
-            $scope.addTab = function(content) {
-                $scope.tabs.push({content: content});
+    return f;
+}
+
+function tabs() {
+
+    var f = {};
+
+    f.restrict = 'E';
+    f.scope = {};
+    f.transclude = true;
+    f.controller = function () {
+        this.tabs = [];
+        this.addTab = function addTab(tab) {
+            this.tabs.push(tab);
+        };
+        this.selectTab = function selectTab(index) {
+            for (var i = 0; i < this.tabs.length; i++) {
+                this.tabs[i].selected = false;
             }
+            this.tabs[index].selected = true;
         };
-        */
+    };
+    f.controllerAs = 'tabs';
+    f.link = function ($scope, $element, $attrs, $ctrl) {
+        $ctrl.selectTab($attrs.active || 0);
+    };
+    f.templateUrl = "partials/tabs.html";
 
-        return f;
-    }
+    return f;
 
-    function caTab() {
-        var f = {};
+}
 
-        f.restrict = "E";
-        f.replace = true;
-        f.scope = {
-            placeholder: "@"
-        };
-        f.templateUrl = "partials/tab.html";
-
-        return f;
-    }
-
-})();
