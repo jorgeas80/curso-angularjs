@@ -239,21 +239,133 @@
 
     // Aquí definimos la directiva como un "stateless object". Es una idea que también usa react
     // Nuestra directiva va a ser un objeto aislado al que le pasamos datos para que los
-    // renderice. De manera que la directiva tendrá su propio controlador y su propio scope.
+    // renderice. De manera que la directiva tendrá su propio controlador y su propio scope aislado. Además, usaremos
+    // la sintáxis ControllerAs
     function customerDirective() {
         var directiveDefinitionObject = {
             restrict: "E",
             replace: true,
             transclude: true,
-            scope: {},
+
+            /**
+             * controllerAs y bindToController van siempre juntos, y están relacionados con el scope. Un poco de historia...
+             *
+             * AngularJS 1.2:
+             *  No se podía usar controllerAs con un scope aislado y el 2way data binding, porque las variables definidas
+             *  en el scope de la directiva no se enlazaban con el controlador, sino con el $scope:
+             *
+             *  app.directive('MiDirectiva', function() {
+             *      return {
+             *          scope: {
+             *              name: '='
+             *          },
+             *          controllerAs: 'ctrl',
+             *          template: '<div>{{ctrl.name}}</div>',
+             *          controller: function($scope) {
+             *              this.name = 'Pepe';
+             *
+             *              // Hay que hacer esto para que 'this' capture el cambio de variable... No nos hemos
+             *              // librado de $scope...
+             *              $scope.$watch('name', function (newValue) {
+             *                  this.name = newValue;
+             *              }.bind(this));
+             *          }
+             *      };
+             *    });
+             *
+             *  AngularJS 1.3:
+             *   Introdujo la palabra clave 'bindToController'. Si valía true, hacía que las variables del scope de la
+             *   directiva se enlazaran con el controlador, no con el scope en si.
+             *
+             *   app.directive('MiDirectiva', function() {
+             *      return {
+             *          scope: {
+             *              name: '='
+             *          },
+             *          bindToController: true,
+             *          controllerAs: 'ctrl',
+             *          template: '<div>{{ctrl.name}}</div>',
+             *          controller: function() {
+             *              this.name = 'Pepe';
+             *          }
+             *      };
+             *    });
+             *
+             *  AngularJS 1.4:
+             *   Amplió 'bindToController'. Ahora también aceptaba directamente un json con las variables a vincular al
+             *   controlador. En ese caso, bastaba con definir scope como un json vacío, simplemente para dejar claro
+             *   que la directiva tenía un scope aislado
+             *
+             *   app.directive('MiDirectiva', function() {
+             *      return {
+             *          scope: {
+             *          },
+             *          bindToController: {
+             *              name: "="
+             *          }
+             *          controllerAs: 'ctrl',
+             *          template: '<div>{{ctrl.name}}</div>',
+             *          controller: function() {
+             *              this.name = 'Pepe';
+             *          }
+             *      };
+             *    });
+             *
+             *  AngularJS 1.5:
+             *    La sintáxis de la directiva había quedado demasiado verbosa. De hecho, aunque nuestra directiva no
+             *    necesitara un controlador específico (realmente solo hacen falta para exponer funciones a otras
+             *    directivas), había que declararlo vacío. Y había que declarar el scope como un json vacío también.
+             *
+             *    app.directive('MiDirectiva', function() {
+             *      return {
+             *          scope: {    // scope vacío
+             *          },
+             *          bindToController: {
+             *              name: "="
+             *          }
+             *          controllerAs: 'ctrl',
+             *          template: '<div>{{ctrl.name}}</div>',
+             *          controller: angular.noop,   // no hace falta controlador, pero aun así hay que declararlo...
+             *      };
+             *    });
+             *
+             *    Para simplificar esto, se creó la función component (ojo al uso de $ctrl en la plantilla)
+             *
+             *    app.component('MiComponente', function() {
+             *      return {
+             *          bindings: {
+             *              name: "="
+             *          }
+             *          template: '<div>{{$ctrl.name}}</div>',
+             *      };
+             *    });
+             */
+
+            // Esto es solo para especificar que nuestra directiva creará un scope aislado. La definición de bindToController
+            // abajo ya genera una serie de variables que irán directamente unidas al controlador. De hecho, si tanto
+            // scope como bindToController son definidos como objetos json, bindToController toma preferencia.
+            // Si aquí pusiera scope: true, también funcionaría. Simplemente, estaría heredando el scope del padre, en
+            // lugar de crear uno nuevo, pero el enganche de 'name' con el controlador sería igual
+            scope: {
+                cust: "=",
+            },
+
+            // Esto nos permite usar el alias 'ctrl' en la plantilla.
             controllerAs: 'ctrl',
+
+            // Las variables definidas aquí, se engancharán con el controlador directamente. Se usa conjuntamente con
+            // controllerAs (arriba).
             bindToController: {
                 cust: "=",
             },
-            
-            // Esto de tener que definir un controlador vacío es feo. Buena oportunidad para
-            // meter component. Aqui lo explica a la perfeccion: https://toddmotto.com/stateless-angular-components/
+
+
+            // Cuando usamos ControllerAs, tenemos que definir un controlador, aunque sea vacío. Como esto es feo,
+            // podemos usar la función component, añadida en angular 1.5.0: https://toddmotto.com/stateless-angular-components/
             controller: function() {},
+            //controller: angular.noop,
+
+
             template: [
                 "<div class='list-group-item'>",
                     "<div><strong>{{ctrl.cust.id}}.-{{ctrl.cust.name}}</strong></div>",
