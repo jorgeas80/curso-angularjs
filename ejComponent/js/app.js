@@ -9,14 +9,14 @@
 
         var f = {};
 
-        f.restrict= 'E';
-        f.scope= {
+        f.restrict = 'E';
+        f.scope = {
             label: '@'
         };
-        f.require= '^tabs';
-        f.transclude= true;
-        f.templateUrl= "partials/tab.html";
-        f.link= function ($scope, $element, $attrs, $ctrl) {
+        f.require = '^tabs';
+        f.transclude = true;
+        f.templateUrl = "partials/tab.html";
+        f.link = function ($scope, $element, $attrs, $ctrl) {
             $scope.tab = {
                 label: $scope.label,
                 selected: false
