@@ -1,0 +1,23 @@
+<h3>Listado de clientes</h3>
+
+<table class="table table-responsive table-hover table-striped table-condensed table-bordered">
+    <thead>
+        <tr>
+            <th>ID Cliente</th>
+            <th>Nombre cliente</th>
+            <th>Email cliente</th>
+            <th>Fecha alta cliente</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="client in listCtrl.clients">
+            <td>{{ client.id }}</td>
+            <td>{{ client.name }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.signup_date | date: 'dd MMM yyyy'}}</td>
+        </tr>
+
+
+    </tbody>
+</table>

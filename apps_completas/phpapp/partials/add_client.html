@@ -1,0 +1,39 @@
+<form name="addCtrl.miForm" role="form" ng-submit="addCtrl.sendForm()">
+
+    <div class="alert alert-danger" ng-show="addCtrl.miForm.$dirty && !addCtrl.formValid">
+        Errores en el formulario
+    </div>
+
+    <div class="form-group ">
+        <label class="control-label requiredField" for="name">
+            Name
+            <span class="asteriskField">
+            *
+           </span>
+        </label>
+        <input class="form-control" id="name" name="name" type="text" ng-model="addCtrl.nombre" required placeholder="Nombre del cliente"/>
+    </div>
+    <div class="form-group ">
+        <label class="control-label requiredField" for="email">
+            Email
+           <span class="asteriskField">
+            *
+           </span>
+        </label>
+        <input class="form-control" id="email" name="email" ng-model="addCtrl.email" type="email" placeholder="Email del cliente" required/>
+    </div>
+    <div class="form-group ">
+        <label class="control-label " for="date">
+            Date
+        </label>
+
+        <input class="form-control" id="date" name="date" type="date" ng-model="addCtrl.date"/>
+    </div>
+    <div class="form-group">
+        <div>
+            <button class="btn btn-primary " name="submit" type="submit">
+                Añadir cliente
+            </button>
+        </div>
+    </div>
+</form>
