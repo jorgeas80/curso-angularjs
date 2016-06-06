@@ -1,1 +1,0 @@
-Basic Angular JS 1.x template, ready to work with local files. 
