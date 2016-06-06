@@ -15,23 +15,48 @@
         vm.name = "";
         vm.email = "";
         vm.date = "";
-        vm.formValid = true;
+        vm.resultClasses = '';
+        vm.showResp = false;
+        vm.message = '';
 
 
         vm.sendForm = function() {
 
             if (vm.miForm.name.$valid && vm.miForm.email.$valid && vm.miForm.date.$valid) {
                 vm.formValid = true;
-                clientsFactory.addClient({
-                    name: vm.name,
-                    email: vm.email,
-                    signup_date: vm.date
-                });
+                clientsFactory
 
-            }
+                    // This sends a HTTP POST request
+                    .addClient({
+                        name: vm.name,
+                        email: vm.email,
+                        signup_date: vm.date
+                    })
 
-            else {
-                vm.formValid = false;
+                    // When the response arrives...
+                    .then(
+
+                        // Response ok
+                        function(resp) {
+                            vm.showResp = true;
+                            vm.resultClasses = "alert alert-success";
+                            vm.message = "Cliente añadido correctamente"
+                        },
+
+                        // Response error
+                        function(error) {
+                            vm.showResp = true;
+                            vm.resultClasses = "alert alert-danger";
+                            vm.message = "Error añadiendo cliente: " + error;
+                        })
+
+                    // Always execute this
+                    .finally(function() {
+                        vm.name = "";
+                        vm.email = "";
+                        vm.date = "";
+                    });
+
             }
         }
     }

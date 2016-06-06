@@ -28,10 +28,9 @@
         // Add new client
         f.addClient = function(data) {
             var client = new f.clientResource(data);
-            client.$save();
 
-            // Update clients
-            f.getClients();
+            // We return a promise here
+            return client.$save();
         }
         
         return f;

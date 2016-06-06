@@ -5,3 +5,11 @@ footer p{
 body {
     padding-top: 4em;
 }
+
+input.ng-valid {
+    border: thin solid #090;
+}
+
+input.ng-invalid {
+    border: thin solid #990000;
+}
