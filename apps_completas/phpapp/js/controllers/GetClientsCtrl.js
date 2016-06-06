@@ -12,7 +12,7 @@
         // Capture this context here
         var vm = this;
 
-        // getClients already returns the data, not a promise
+        // getClients uses $resource. It handles the promises and allows us to get a resolved object to be shown
         vm.clients = clientsFactory.getClients();
     }
 })();

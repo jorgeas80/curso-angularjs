@@ -26,14 +26,14 @@
                 vm.formValid = true;
                 clientsFactory
 
-                    // This sends a HTTP POST request
+                    // This sends a HTTP POST request by calling $resource
                     .addClient({
                         name: vm.name,
                         email: vm.email,
                         signup_date: vm.date
                     })
 
-                    // When the response arrives...
+                    // We can handle the $resource promise by ourselves.
                     .then(
 
                         // Response ok

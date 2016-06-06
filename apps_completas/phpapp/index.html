@@ -15,7 +15,7 @@
     <body>
 
         <header>
-            <nav class="navbar navbar-inverse navbar-fixed-top container-fluid" role="navigation">
+            <nav class="navbar navbar-inverse navbar-fixed-top container-fluid" role="navigation" ng-controller="NavCtrl as navctrl">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">Ejemplo aplicación</a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -28,8 +28,8 @@
 
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#listclients">Listado de clientes</a></li>
-                        <li><a href="#addclient">Añadir nuevo cliente</a></li>
+                        <li ng-class="{active: navctrl.isActive('/listclients')}"><a href="#listclients">Listado de clientes</a></li>
+                        <li ng-class="{active: navctrl.isActive('/addclient')}"><a href="#addclient">Añadir nuevo cliente</a></li>
                     </ul>
                 </div>
             </nav>
@@ -45,7 +45,7 @@
 
 
         <footer class="navbar navbar-inverse navbar-fixed-bottom container-fluid">
-            <p class="text-muted">My brand here</p>
+            <p class="text-muted">Logo aquí</p>
         </footer>
 
         <script src="js/vendor/jquery-1.12.1.min.js"></script>
@@ -55,6 +55,7 @@
         <script src="js/vendor/angular-resource.js"></script>
         <script src="js/app.js"></script>
         <script src="js/services/services.js"></script>
+        <script src="js/controllers/NavController.js"></script>
         <script src="js/controllers/GetClientsCtrl.js"></script>
         <script src="js/controllers/AddClientCtrl.js"></script>
     </body>
