@@ -11,11 +11,21 @@
 
 
     // Specify injections. Not mandatory but it's ok
-    RoutingConfig.$inject = ['$routeProvider'];
+    RoutingConfig.$inject = ['$routeProvider', '$httpProvider'];
 
 
     // Config function here
-    function RoutingConfig($routeProvider) {
+    function RoutingConfig($routeProvider, $httpProvider) {
+
+        // Reset headers to avoid OPTIONS request (aka preflight)
+        // We shouldn't do that in production app, but for a simple example is ok
+        // More info here: http://stackoverflow.com/a/33662315/593722
+        $httpProvider.defaults.headers.common = {};
+        $httpProvider.defaults.headers.post = {};
+        $httpProvider.defaults.headers.put = {};
+        $httpProvider.defaults.headers.patch = {};
+
+
         $routeProvider
             .when('/listclients', {
                 controller: 'GetClientsCtrl as listCtrl',

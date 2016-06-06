@@ -1,17 +1,17 @@
 <form name="addCtrl.miForm" role="form" ng-submit="addCtrl.sendForm()">
 
-    <div class="alert alert-danger" ng-show="addCtrl.miForm.$dirty && !addCtrl.formValid">
+    <div class="alert alert-danger" ng-show="addCtrl.miForm.$dirty && !addCtrl.miForm.$valid">
         Errores en el formulario
     </div>
 
     <div class="form-group ">
         <label class="control-label requiredField" for="name">
-            Name
+            Nombre
             <span class="asteriskField">
             *
            </span>
         </label>
-        <input class="form-control" id="name" name="name" type="text" ng-model="addCtrl.nombre" required placeholder="Nombre del cliente"/>
+        <input class="form-control" id="name" name="name" type="text" ng-model="addCtrl.name" required placeholder="Nombre del cliente"/>
     </div>
     <div class="form-group ">
         <label class="control-label requiredField" for="email">
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group ">
         <label class="control-label " for="date">
-            Date
+            Fecha de alta
         </label>
 
         <input class="form-control" id="date" name="date" type="date" ng-model="addCtrl.date"/>
@@ -35,5 +35,9 @@
                 Añadir cliente
             </button>
         </div>
+    </div>
+
+    <div class="alert alert-success" ng-show="addCtrl.miForm.$dirty && addCtrl.miForm.$valid">
+        Cliente añadido correctamente
     </div>
 </form>
